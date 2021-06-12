@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="5845c700-dd11-4f7c-be32-ca0fe33ec098" name="Default Changelist" comment="">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
@@ -11,6 +12,9 @@
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
 >>>>>>> 5aaa6de27bf6dabc78b69b4acedc451c8f6703f4
     </list>
+=======
+    <list default="true" id="5845c700-dd11-4f7c-be32-ca0fe33ec098" name="Default Changelist" comment="" />
+>>>>>>> 3922b272993fb2664309962a28d41a122dbf817c
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +198,11 @@
       <workItem from="1623266907726" duration="991000" />
 =======
       <workItem from="1623269453130" duration="417000" />
+<<<<<<< HEAD
 >>>>>>> 5aaa6de27bf6dabc78b69b4acedc451c8f6703f4
+=======
+      <workItem from="1623419724686" duration="297000" />
+>>>>>>> 3922b272993fb2664309962a28d41a122dbf817c
     </task>
     <servers />
   </component>
@@ -211,5 +219,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
