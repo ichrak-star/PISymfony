@@ -2,3 +2,4 @@
 
 - Lien vers Trello :  https://trello.com/b/39oQptG4/pidev2021
 - Lien vers Repository : https://github.com/ichrak-star/PISymfony
+C:\wamp64\www\projet PI\PISymfony\takwira\.idea
