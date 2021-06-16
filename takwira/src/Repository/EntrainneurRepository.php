@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Entreneur;
+use App\Entity\Entrainneur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Entreneur|null find($id, $lockMode = null, $lockVersion = null)
- * @method Entreneur|null findOneBy(array $criteria, array $orderBy = null)
- * @method Entreneur[]    findAll()
- * @method Entreneur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Entrainneur|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Entrainneur|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Entrainneur[]    findAll()
+ * @method Entrainneur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EntreneurRepository extends ServiceEntityRepository
+class EntrainneurRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Entreneur::class);
+        parent::__construct($registry, Entrainneur::class);
     }
 
     // /**
-    //  * @return Entreneur[] Returns an array of Entreneur objects
+    //  * @return Entrainneur[] Returns an array of Entrainneur objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class EntreneurRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Entreneur
+    public function findOneBySomeField($value): ?Entrainneur
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')

@@ -36,11 +36,7 @@ class Equipe extends Personne
      */
     private $joueur;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Entreneur::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $entreneurs;
+
 
     public function __construct()
     {
@@ -106,12 +102,12 @@ class Equipe extends Personne
         return $this;
     }
 
-    public function getEntreneurs(): ?Entreneur
+    public function getEntreneurs(): ?Entrainneur
     {
         return $this->entreneurs;
     }
 
-    public function setEntreneurs(Entreneur $entreneurs): self
+    public function setEntreneurs(Entrainneur $entreneurs): self
     {
         $this->entreneurs = $entreneurs;
 
