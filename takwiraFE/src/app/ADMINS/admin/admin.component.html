@@ -1,0 +1,180 @@
+<app-header-admin></app-header-admin>
+<br><br><br><br><br>
+<!--------------------------  Aside  ---------------------------->
+<aside>
+  <div id="sidebar" class="nav-collapse " >
+    <ul class="sidebar-menu" id="nav-accordion">
+      <h2 style="color: black;   font-weight: bold;">ADMIN</h2>
+      <li class="mt">
+        <a class="active" href="#" >
+          <i style="font-size: large" class="fa fa-home" aria-hidden="true"></i>
+          <span style="font-size: large">Accueil</span>
+
+        </a>
+    </ul>
+  </div>
+</aside>
+
+
+<div class="container-fluid" style="width: 1500px; margin-left: 15% ">
+
+  <!--------------------------------------------------------------->
+  <div class="container" style=" width: 1500px; margin-left: 5%; height: 400px " [hidden]="modifDiv">
+    <div class="d-flex justify-content-center ">
+      <div class="card">
+        <br>
+        <div class="card-header">
+          <h3 style="color: black; font-weight: bold;">Modification : </h3>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm">
+            <div class="form-group row">
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input  class="form-control" type="text" placeholder="Name"  name="name"  [(ngModel)] ="userModif.name" >
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input  class="form-control" type="text" placeholder="LastName"  name="lastname" [(ngModel)]="userModif.lastname">
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="email" class="form-control" name="email" placeholder="Email"  [(ngModel)]="userModif.email">
+                </div>
+
+              </div>
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password"  class="form-control" placeholder="password" name="password" [(ngModel)] ="userModif.password" >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <select  class="form-control" name="adress" [(ngModel)] ="userModif.adress" >
+                    <option value="ariana" >Ariana</option>
+                    <option value="Béja">Béja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Gabes">Gabes</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Kebili">Kebili</option>
+                    <option value="La Manouba">La Manouba</option>
+                    <option value="Le Kef">Le Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Médenine">Médenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                  </select >
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+                  </div>
+                  <select  class="form-control" name="role" [(ngModel)] ="userModif.role" >
+                    <option  hidden>Role</option>
+                    <option value="organisateur" >Organisateur</option>
+                    <option value="entreneur">Entreneur</option>
+                    <option value="responsableTicker">Responsable ticket</option>
+                    <option value="gestionnaireBlog">Gestionneur blog</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Modifier" name="enregistrer" (click)="updateUser(userModif.id, userModif)"  class="btn btn-success">
+              <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerModification()">
+              <p></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------------------------------->
+  <br>
+  <!--------------------------  Table  ---------------------------->
+  <div [hidden]="afficherTable">
+    <h1 style="font-weight: bold">Liste des utilisateurs</h1>
+    <table  class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">PostJoueur</th>
+        <th scope="col">tshirtNumber</th>
+        <th scope="col">sizeJoueur</th>
+        <th scope="col">weightJoueur</th>
+        <th scope="col">levelJoueur</th>
+        <th scope="col">Role</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of listeUser">
+        <th scope="row"> {{ user.id }}</th>
+        <td > {{ user.name }}</td>
+        <td >{{ user.lastname }}</td>
+        <td >{{ user.email }}</td>
+        <td >{{ user.adress }}</td>
+        <td >{{ user.post }}</td>
+        <td >{{ user.tshirtNumber }}</td>
+        <td>{{ user.size }}</td>
+        <td>{{ user.weight }}</td>
+        <td>{{ user.level }}</td>
+        <td >{{ user.role }}</td>
+        <td>
+          <button (click)="onEdit(user)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>
+          <button (click)="delete(user.id)"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i> </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+  </div>
+
+<br><br><br><br><br>
+
+

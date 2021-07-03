@@ -7,9 +7,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+  *     normalizationContext={"groups"={"user:read"}},
+  *     denormalizationContext={"groups"={"user:write"}}
+  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User
@@ -18,94 +22,90 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("user:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $post;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $tshirtNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $size;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $weight;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
     private $level;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="user")
-     */
-    private $idTicket;
+
 
     /**
-     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="idUser")
+     * @ORM\Column(type="string", length=255)
+      * @Groups("user:read")
+      * @Groups("user:write")
      */
-    private $team;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Competion::class, mappedBy="user")
-     */
-    private $idCompetition;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Publication::class, mappedBy="user")
-     */
-    private $idPublication;
-
-    /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
-     */
-    private $comment;
+    private $role;
 
 
-
-
-    public function __construct()
-    {
-        $this->idTicket = new ArrayCollection();
-        $this->idCompetition = new ArrayCollection();
-        $this->idPublication = new ArrayCollection();
-        $this->comment = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -232,128 +232,15 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection|Ticket[]
-     */
-    public function getIdTicket(): Collection
+
+    public function getRole(): ?string
     {
-        return $this->idTicket;
+        return $this->role;
     }
 
-    public function addIdTicket(Ticket $idTicket): self
+    public function setRole(string $role): self
     {
-        if (!$this->idTicket->contains($idTicket)) {
-            $this->idTicket[] = $idTicket;
-            $idTicket->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdTicket(Ticket $idTicket): self
-    {
-        if ($this->idTicket->removeElement($idTicket)) {
-            // set the owning side to null (unless already changed)
-            if ($idTicket->getUser() === $this) {
-                $idTicket->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getTeam(): ?Team
-    {
-        return $this->team;
-    }
-
-    public function setTeam(?Team $team): self
-    {
-        $this->team = $team;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Competion[]
-     */
-    public function getIdCompetition(): Collection
-    {
-        return $this->idCompetition;
-    }
-
-    public function addIdCompetition(Competion $idCompetition): self
-    {
-        if (!$this->idCompetition->contains($idCompetition)) {
-            $this->idCompetition[] = $idCompetition;
-            $idCompetition->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdCompetition(Competion $idCompetition): self
-    {
-        if ($this->idCompetition->removeElement($idCompetition)) {
-            // set the owning side to null (unless already changed)
-            if ($idCompetition->getUser() === $this) {
-                $idCompetition->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Publication[]
-     */
-    public function getIdPublication(): Collection
-    {
-        return $this->idPublication;
-    }
-
-    public function addIdPublication(Publication $idPublication): self
-    {
-        if (!$this->idPublication->contains($idPublication)) {
-            $this->idPublication[] = $idPublication;
-            $idPublication->setPublication($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdPublication(Publication $idPublication): self
-    {
-        if ($this->idPublication->removeElement($idPublication)) {
-            // set the owning side to null (unless already changed)
-            if ($idPublication->getPublication() === $this) {
-                $idPublication->setPublication(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|comment[]
-     */
-    public function getComment(): Collection
-    {
-        return $this->comment;
-    }
-
-    public function addComment(comment $comment): self
-    {
-        if (!$this->comment->contains($comment)) {
-            $this->comment[] = $comment;
-        }
-
-        return $this;
-    }
-
-    public function removeComment(comment $comment): self
-    {
-        $this->comment->removeElement($comment);
+        $this->role = $role;
 
         return $this;
     }

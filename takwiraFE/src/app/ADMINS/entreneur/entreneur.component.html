@@ -1,0 +1,333 @@
+<app-header-admin></app-header-admin>
+<br><br><br><br><br>
+
+<!--------------------------  Aside  ---------------------------->
+<aside>
+  <div id="sidebar" class="nav-collapse " >
+    <div id="teamlogo" [hidden]="logo">
+      <img  style="width: 75px" src="assets/images/barcelon1.jpg" alt="">
+      Barcelone
+      <br>
+      <button style="margin-left: 25%"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+      <button (click)="deleteTeam()"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i></button>
+    </div>
+    <ul class="sidebar-menu" id="nav-accordion">
+      <h2 style="color: black;   font-weight: bold;">ENTRENEUR</h2>
+      <li class="mt">
+        <a class="active" href="#" >
+          <i style="font-size: large" class="fa fa-home" aria-hidden="true"></i>
+          <span style="font-size: large">Accueil</span>
+
+        </a>
+      <li [hidden]="btnAjouterTeam">
+        <a  style="font-size: large" type="submit" (click)=" ajouterTeam()">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter team </span>
+        </a>
+      </li>
+      <li>
+        <a  style="font-size: large" type="submit" (click)=" ajouterJoueur()">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter joueur </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</aside>
+<!-------------------------- logo team -------------------------->
+
+
+
+<!--------------------------------------------------------------->
+<div class="container" style="width: 1500px; margin-left: 20% ">
+  <!--------------------------  Ajout joueur ---------------------------->
+  <div class="card"  [hidden]="afficher">
+    <div class="card-header">
+      <h1>Ajouter joueur </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #f="ngForm">
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Name"  name="name" ngModel >
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="LastName"  name="lastname" ngModel>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input type="email" class="form-control" name="email" placeholder="Email"  ngModel>
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password"  class="form-control" placeholder="password" name="password" ngModel >
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+                <select  class="form-control" name="adress" ngModel >
+                  <option value="ariana" >Ariana</option>
+                  <option value="Béja">Béja</option>
+                  <option value="Ben Arous">Ben Arous</option>
+                  <option value="Bizerte">Bizerte</option>
+                  <option value="Gabes">Gabes</option>
+                  <option value="Gafsa">Gafsa</option>
+                  <option value="Jendouba">Jendouba</option>
+                  <option value="Kairouan">Kairouan</option>
+                  <option value="Kasserine">Kasserine</option>
+                  <option value="Kebili">Kebili</option>
+                  <option value="La Manouba">La Manouba</option>
+                  <option value="Le Kef">Le Kef</option>
+                  <option value="Mahdia">Mahdia</option>
+                  <option value="Médenine">Médenine</option>
+                  <option value="Monastir">Monastir</option>
+                  <option value="Nabeul">Nabeul</option>
+                  <option value="Sfax">Sfax</option>
+                  <option value="Sidi Bouzid">Sidi Bouzid</option>
+                  <option value="Siliana">Siliana</option>
+                  <option value="Sousse">Sousse</option>
+                  <option value="Tataouine">Tataouine</option>
+                  <option value="Tozeur">Tozeur</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Zaghouan">Zaghouan</option>
+                </select >
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+                </div>
+                <select  class="form-control" name="role" ngModel >
+                  <option  hidden>Role</option>
+                  <option value="organisateur" >Organisateur</option>
+                  <option value="entreneur">Entreneur</option>
+                  <option value="responsableTicker">Responsable ticket</option>
+                  <option value="gestionnaireBlog">Gestionneur blog</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-3">
+              <input  class="form-control" type="text" placeholder="Post" required name="post" ngModel>
+            </div>
+            <div class="col-lg-3">
+              <input  class="form-control" type="number" placeholder="T-shirt number" required name="tshirtNumber" ngModel>
+            </div>
+            <div class="col-lg-2">
+              <input  class="form-control" type="text" placeholder="Level" required name="Level" ngModel>
+            </div>
+            <div class="col-lg-2">
+              <input  class="form-control" type="text" placeholder="Weight" required name="Weight" ngModel>
+            </div>
+            <div class="col-lg-2">
+              <input  class="form-control" type="text" placeholder="size" required name="size" ngModel>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Enregistrer" name="enregistrer"  class="btn btn-primary"(click)="addOrganisater()">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="addOrganisater()">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-----------------------------Ajout team---------------------------------->
+  <div class="card"  [hidden]="afficherteam">
+    <div class="card-header">
+      <h1>Ajouter team </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #f="ngForm">
+
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nom team" required name="teamName" ngModel>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nationalité" required name="nationality" ngModel>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Enregistrer" name="enregistrer"  class="btn btn-primary"(click)="addteam()">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerTeam()">
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!--------------------------  Table  ---------------------------->
+  <div >
+    <h1 style="font-weight: bold">Liste des joueurs</h1>
+    <table class="table table-bordered table-hover" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Post </th>
+        <th scope="col">T-shirt number</th>
+        <th scope="col">level</th>
+        <th scope="col">weight</th>
+        <th scope="col">Size</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Habib Jerbi</td>
+        <td>Gardien</td>
+        <td>1</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
+          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Chtiwi Azouz</td>
+        <td>Difenseur</td>
+        <td>5</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
+          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Rochdi Bahri</td>
+        <td>Attaque</td>
+        <td>10</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
+          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br><br>
+
+  <div >
+    <h1 style="font-weight: bold">Liste des joueurs sélectionnés</h1>
+    <table class="table table-bordered table-hover" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Post </th>
+        <th scope="col">T-shirt number</th>
+        <th scope="col">level</th>
+        <th scope="col">weight</th>
+        <th scope="col">Size</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Habib Jerbi</td>
+        <td>Gardien</td>
+        <td>1</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Chtiwi Azouz</td>
+        <td>Difenseur</td>
+        <td>5</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Rochdi Bahri</td>
+        <td>Attaque</td>
+        <td>10</td>
+        <td>Midium</td>
+        <td>100</td>
+        <td>170</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br><br>
+
+</div>
+
+<br><br><br>
+
+
+
+
