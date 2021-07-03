@@ -1,0 +1,168 @@
+
+<app-header></app-header>
+<br><br><br><br><br><br>
+
+
+<br>
+
+<!-------------------Slider------------------->
+<div class="container">
+  <div class="slider">
+    <div class="slides">
+      <div class="slider-1"><img style="width: 100%" src="assets/images/slider1.jpg" alt=""></div>
+      <div class="slider-2"><img style="width: 100%" src="assets/images/slider.jpg" alt=""></div>
+      <div class="slider-3"><img style="width: 100%" src="assets/images/slider3.jpg" alt=""></div>
+      <div class="slider-4"><img style="width: 100%" src="assets/images/slider2.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------->
+<br><br>
+<hr>
+<!------------------- List match ---------------------->
+
+<div class="container" id="photos">
+  <div class="hero-container">
+    <div class="main-container">
+      <div class="poster-container">
+        <a href="#"><img src="assets/images/RM2.png" class="poster" /></a>
+      </div>
+      <div class="ticket-container">
+        <div class="ticket__content">
+          <h4 class="ticket__movie-title">Real Madrid</h4>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Liste joueur</button>
+        </div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="poster-container">
+        <a href="#"><img src="assets/images/barcelon1.jpg" class="poster" /></a>
+      </div>
+      <div class="ticket-container">
+        <div class="ticket__content">
+          <h4 class="ticket__movie-title">Barcelone</h4>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Liste joueur</button>
+        </div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="poster-container" style="height: 100px">
+        <p class="card-text" > <span style="font-weight: bold">Samedi  :</span> 26/06/2021</p>
+        <p class="card-text"> <span style="font-weight:  bold">Time    :</span> 21:00</p>
+        <p class="card-text"> <span style="font-weight:  bold">Arbitre :</span>Chtiwi AbdelAziz</p>
+        <p class="card-text"> <span style="font-weight:  bold">Stade :</span>Camp no</p>
+        <button class="ticket__buy-btn" style="color: cornflowerblue">Achat ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+<!---------------------- List joueurs ------------------------->
+<br><br>
+<div class="container-fluid" id="joueurs-card" [hidden]="affiche">
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header" >
+        <img style="width: 150px; margin-left: 40%" src="assets/images/barcelon1.jpg" class="poster" />
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="none" style=" margin-left: 37%; margin-top: 0">
+          <span aria-hidden="true" style="width: 50px">X</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="cards">
+          <div class="card">
+            <h2 class="card-title">Messi</h2>
+            <img src="assets/images/messi.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous,
+              fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus),
+              Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Piqué</h2>
+            <img src="assets/images/pikee.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Griezman</h2>
+            <img src="assets/images/Griezman.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Messi</h2>
+            <img src="assets/images/messi.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Piqué</h2>
+            <img src="assets/images/pikee.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Griezman</h2>
+            <img src="assets/images/Griezman.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Griezman</h2>
+            <img src="assets/images/Griezman.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Piqué</h2>
+            <img src="assets/images/pikee.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Messi</h2>
+            <img src="assets/images/messi.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Griezman</h2>
+            <img src="assets/images/Griezman.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Piqué</h2>
+            <img src="assets/images/pikee.jpg" alt="">
+            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!---------------------- Video ------------------------->
+<hr>
+<div class="container">
+  <object width="750" height="500" data="https://www.youtube.com/embed/F9Bo89m2f6g" style="margin-left: 20%"></object>
+</div>
+
+
+<!------------------------------------------------->
+
+
+
+
+
+<!-------------- Footer ------------------------->
+<br><br><br><br><br><br>
+<app-footer></app-footer>
+
+
+
+
+

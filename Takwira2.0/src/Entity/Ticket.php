@@ -34,15 +34,7 @@ class Ticket
      */
     private $type;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="idTicket")
-     */
-    private $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Matche::class, inversedBy="ticket")
-     */
-    private $matche;
 
     public function getId(): ?int
     {
@@ -85,27 +77,4 @@ class Ticket
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getMatche(): ?Matche
-    {
-        return $this->matche;
-    }
-
-    public function setMatche(?Matche $matche): self
-    {
-        $this->matche = $matche;
-
-        return $this;
-    }
 }

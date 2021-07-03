@@ -1,0 +1,256 @@
+<app-header-admin></app-header-admin>
+<br><br><br><br><br>
+<!--------------------------  Aside  ---------------------------->
+<aside>
+  <div id="sidebar" class="nav-collapse " >
+    <ul class="sidebar-menu" id="nav-accordion">
+      <h2 style="color: black;   font-weight: bold;">ORGANISATEUR</h2>
+      <li class="mt">
+        <a class="active" href="#" >
+          <i style="font-size: large" class="fa fa-home" aria-hidden="true"></i>
+          <span style="font-size: large">Accueil</span>
+
+        </a>
+      <li>
+        <a  style="font-size: large" type="submit"(click)="ajouterMatch()">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter match </span>
+        </a>
+      </li>
+      <li>
+        <a  style="font-size: large" type="submit">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter Stade </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+
+<div class="container" style="width: 1000px; margin-left: 25% ">
+  <!--------------------------  Ajout  ---------------------------->
+  <div class="card" [hidden]="afficherAjout">
+    <div class="card-header">
+      <h1>Ajouter match  </h1>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm">
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <select  class="form-control" name="equipe1" ngModel formControlName>
+              <option hidden>Equipe 1</option>
+              <option >Barcelone</option>
+              <option >Real Madrid</option>
+              <option >Chelsea</option>
+              <option >Manchister United</option>
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control"  name="secteurEnt" ngModel formControlName >
+              <option hidden>Equipe 2</option>
+              <option >Barcelone</option>
+              <option >Real Madrid</option>
+              <option >Chelsea</option>
+              <option >Manchister United</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <select  class="form-control" name="equipe1" ngModel formControlName>
+              <option hidden>Stade</option>
+              <option>Camp no</option>
+              <option>Bernabew</option>
+              <option>Sansiro</option>
+
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control"  name="secteurEnt" ngModel formControlName >
+              <option hidden>Arbitre</option>
+              <option >Habib Jerbi</option>
+              <option >Chtiwi Azouz</option>
+              <option >Rochdi Bahri</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label  >Date de match :</label>
+            <input class="form-control" type="date" name="dateCreat" ngModel required>
+          </div>
+          <div class="col-lg-6">
+            <label  >Time de match :</label>
+            <input class="form-control" type="time" name="dateCreat" ngModel required>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" value="Ajouter" name="enregistrer" class="btn btn-primary" (click)="addOrganisater()">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="addOrganisater()">
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--------------------------  Table  ---------------------------->
+  <div [hidden]="afficherTable">
+    <h1 style="font-weight: bold">Liste des matchs</h1>
+    <table  class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Equipe 1</th>
+        <th scope="col">Equipe 2 </th>
+        <th scope="col">Stade</th>
+        <th scope="col">Arbitre</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Barcelone</td>
+        <td>Real Madrid</td>
+        <td>Camp no</td>
+        <td>Habib Jerbi</td>
+        <td>30/06/2021</td>
+        <td>21:00</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Barcelone</td>
+        <td>Real Madrid</td>
+        <td>Camp no</td>
+        <td>Habib Jerbi</td>
+        <td>30/06/2021</td>
+        <td>21:00</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Barcelone</td>
+        <td>Real Madrid</td>
+        <td>Camp no</td>
+        <td>Habib Jerbi</td>
+        <td>30/06/2021</td>
+        <td>21:00</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+  <hr>
+  <div >
+    <h1 style="font-weight: bold">Liste des Stades</h1>
+    <table  class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom stade</th>
+        <th scope="col">Adresse </th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Camp no</td>
+        <td>Barcelone</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Rades</td>
+        <td>Rades</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>El Manzeh</td>
+        <td>Ariana</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+  <hr>
+  <div >
+    <h1 style="font-weight: bold">Liste des équipes</h1>
+    <table  class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom équipe</th>
+        <th scope="col">Nationnalité </th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Real Madrid</td>
+        <td>Madrid</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>EST</td>
+        <td>Tunis</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>CA</td>
+        <td>Tunis</td>
+        <td>
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+

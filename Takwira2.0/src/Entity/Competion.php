@@ -36,20 +36,6 @@ class Competion
      */
     private $endDate;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="idCompetition")
-     */
-    private $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Matche::class, mappedBy="competion")
-     */
-    private $matche;
-
-    public function __construct()
-    {
-        $this->matche = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -92,45 +78,7 @@ class Competion
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
-        return $this;
-    }
 
-    /**
-     * @return Collection|Matche[]
-     */
-    public function getMatche(): Collection
-    {
-        return $this->matche;
-    }
-
-    public function addMatche(Matche $matche): self
-    {
-        if (!$this->matche->contains($matche)) {
-            $this->matche[] = $matche;
-            $matche->setCompetion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMatche(Matche $matche): self
-    {
-        if ($this->matche->removeElement($matche)) {
-            // set the owning side to null (unless already changed)
-            if ($matche->getCompetion() === $this) {
-                $matche->setCompetion(null);
-            }
-        }
-
-        return $this;
-    }
 }

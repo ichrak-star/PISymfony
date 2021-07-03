@@ -1,0 +1,154 @@
+<app-header-admin></app-header-admin>
+<br><br><br><br><br>
+
+
+<aside>
+  <div id="sidebar" class="nav-collapse " >
+    <ul class="sidebar-menu" id="nav-accordion">
+      <h2 style="color: black;   font-weight: bold;">GESTION TICKET</h2>
+      <li class="mt">
+        <a class="active" href="#" >
+          <i style="font-size: large" class="fa fa-home" aria-hidden="true"></i>
+          <span style="font-size: large">Accueil</span>
+
+        </a>
+      <li>
+        <a  style="font-size: large" type="submit" (click)="ajouterOrganisateur()">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter ticket</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</aside>
+<div class="container" style="width: 1000px; margin-left: 25% ">
+  <div class="card" [hidden]="afficher">
+    <div class="card-header">
+      <h1>Ajouter ticket </h1>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm">
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <select  class="form-control" name="equipe1" ngModel >
+              <option hidden>Match</option>
+              <option >Barcelone</option>
+              <option >Real Madrid</option>
+              <option >Chelsea</option>
+              <option >Manchister United</option>
+
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control"  name="secteurEnt" ngModel>
+              <option hidden>Stade</option>
+              <option >Barcelone</option>
+              <option >Real Madrid</option>
+              <option >Chelsea</option>
+              <option >Manchister United</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <select  class="form-control" name="equipe1" ngModel >
+              <option hidden>Stade</option>
+              <option>Ariana</option>
+              <option>Béja</option>
+              <option>Ben Arous</option>
+              <option>Bizerte</option>
+              <option>Gabes</option>
+              <option>Gafsa</option>
+              <option>Jendouba</option>
+              <option>Kairouan</option>
+              <option>Kasserine</option>
+              <option>Kebili</option>
+              <option>La Manouba</option>
+              <option>Le Kef</option>
+              <option>Mahdia</option>
+              <option>Médenine</option>
+              <option>Monastir</option>
+              <option>Nabeul</option>
+              <option>Sfax</option>
+              <option>Sidi Bouzid</option>
+              <option>Siliana</option>
+              <option>Sousse</option>
+              <option>Tataouine</option>
+              <option>Tozeur</option>
+              <option>Tunis</option>
+              <option>Zaghouan</option>
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control"  name="secteurEnt" ngModel  >
+              <option hidden>Arbitre</option>
+              <option >Entreprise</option>
+              <option >Ecole privée</option>
+              <option >Ecole formation</option>
+              <option >Autres</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label  >Date de match :</label>
+            <input class="form-control" type="number" name="sell" ngModel required>
+          </div>
+          <div class="col-lg-6">
+            <label  >Time de match :</label>
+            <input class="form-control" type="number" name="number" ngModel required>
+            <label  >Time de match :</label>
+            <input class="form-control" type="number" name="type" ngModel required>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" value="Ajouter" name="enregistrer" class="btn btn-primary" (click)="addTicket(f.value)">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="ajouterTickets()">
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+
+  <div [hidden]="afficherTable">
+    <h1 style="font-weight: bold">Liste des tickets</h1>
+    <table class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Numéro ticket</th>
+        <th scope="col">type ticket </th>
+        <th scope="col">Match</th>
+        <th scope="col">prix</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ticket of listeTicket">
+        <th scope="row"> {{ ticket.id}}</th>
+        <td>{{ ticket.sell}}</td>
+        <td>{{ ticket.type}}</td>
+        <td>Camp no</td>
+        <td>Habib Jerbi</td>
+        <td>30/06/2021</td>
+        <td>21:00</td>
+        <td>
+          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+
+

@@ -31,20 +31,8 @@ class Team
      */
     private $nationality;
 
-    /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="team")
-     */
-    private $idUser;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Matche::class, inversedBy="team")
-     */
-    private $matche;
 
-    public function __construct()
-    {
-        $this->idUser = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -75,45 +63,4 @@ class Team
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getIdUser(): Collection
-    {
-        return $this->idUser;
-    }
-
-    public function addIdUser(User $idUser): self
-    {
-        if (!$this->idUser->contains($idUser)) {
-            $this->idUser[] = $idUser;
-            $idUser->setTeam($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdUser(User $idUser): self
-    {
-        if ($this->idUser->removeElement($idUser)) {
-            // set the owning side to null (unless already changed)
-            if ($idUser->getTeam() === $this) {
-                $idUser->setTeam(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getMatche(): ?Matche
-    {
-        return $this->matche;
-    }
-
-    public function setMatche(?Matche $matche): self
-    {
-        $this->matche = $matche;
-
-        return $this;
-    }
 }

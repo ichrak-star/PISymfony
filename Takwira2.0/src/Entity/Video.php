@@ -29,10 +29,6 @@ class Video
      */
     private $format;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Publication::class, inversedBy="video")
-     */
-    private $publication;
 
     public function getId(): ?int
     {
@@ -63,15 +59,4 @@ class Video
         return $this;
     }
 
-    public function getPublication(): ?Publication
-    {
-        return $this->publication;
-    }
-
-    public function setPublication(?Publication $publication): self
-    {
-        $this->publication = $publication;
-
-        return $this;
-    }
 }

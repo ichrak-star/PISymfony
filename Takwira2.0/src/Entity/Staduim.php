@@ -31,15 +31,7 @@ class Staduim
      */
     private $location;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Matche::class, mappedBy="staduim")
-     */
-    private $matche;
 
-    public function __construct()
-    {
-        $this->matche = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -70,33 +62,4 @@ class Staduim
         return $this;
     }
 
-    /**
-     * @return Collection|Matche[]
-     */
-    public function getMatche(): Collection
-    {
-        return $this->matche;
-    }
-
-    public function addMatche(Matche $matche): self
-    {
-        if (!$this->matche->contains($matche)) {
-            $this->matche[] = $matche;
-            $matche->setStaduim($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMatche(Matche $matche): self
-    {
-        if ($this->matche->removeElement($matche)) {
-            // set the owning side to null (unless already changed)
-            if ($matche->getStaduim() === $this) {
-                $matche->setStaduim(null);
-            }
-        }
-
-        return $this;
-    }
 }
