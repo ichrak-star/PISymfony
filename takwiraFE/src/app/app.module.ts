@@ -34,7 +34,7 @@ import { HeaderAdminComponent } from './ADMINS/header-admin/header-admin.compone
     EntreneurComponent,
     TicketComponent,
     BlogComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
   ],
   imports: [
     BrowserModule,

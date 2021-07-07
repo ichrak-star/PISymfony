@@ -12,19 +12,9 @@ export class UserService {
     let header = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
     return header;
   }
   constructor(private  http: HttpClient) { }
-  /*options: {
-    headers?: HttpHeaders | {[header: string]: string | string[]},
-    observe?: 'body' | 'events' | 'response',
-    params?: HttpParams|{[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>},
-    reportProgress?: boolean,
-    responseType?: 'arraybuffer'|'blob'|'json'|'text',
-    withCredentials?: boolean,
-  };*/
-
   getAllUsers(){
     return this.http.get(this.url);
   }

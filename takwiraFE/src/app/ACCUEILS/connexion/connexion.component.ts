@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../SERVICES/user/user.service';
 
 @Component({
   selector: 'app-connexion',
@@ -8,62 +9,64 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit {
-  constructor( private router: Router,
-              private formBuilder: FormBuilder) { }
+  constructor( private serviceUser: UserService, private router: Router, private formBuilder: FormBuilder) { }
   authForm: FormGroup;
   isSubmitted  =  false;
-  liste;
-  entreprise;
+  listeUser;
+  user;
   idEnt = '';
+  connexionForm = true;
   errorMessage = false;
-  amil = document.getElementById('email');
+  email = document.getElementById('email');
   pwd = document.getElementById('password');
   role = document.getElementById('role');
   ngOnInit(): void {
-    /* this.authForm  =  this.formBuilder.group({
+     this.authForm  =  this.formBuilder.group({
        email: ['', Validators.required],
-       password: ['', Validators.required]
+       password: ['', Validators.required],
+       role: ['', Validators.required]
      });
-     this.serviceEntreprise.getEntreprise().subscribe((res) =>{
-       this.liste = res;
+     this.serviceUser.getAllUsers().subscribe((res) => {
+       this.listeUser = res;
      });
    }
-   signIn(){
+   /*signIn(email, pwd, role){
      this.isSubmitted = true;
-     if ( this.liste.find(x => x.name === this.amil && x.password === this.pwd))
+     if ( this.listeUser.findElement(x => x.email === this.email && x.password === this.pwd && x.role === this.role) )
        {
-         this.serviceEntreprise.signIn(this.authForm.value);
-         this.router.navigate(['/EspaceEmployeur']);
+           this.router.navigate(['/' + role ]);
+       //  this.serviceUser.signIn(this.authForm.value);
        }
        else
          {
-           return;
-         }*/
-  }
-  loginEntreprise(login, pwd, role){
-    if (login === 'takwira' && pwd === 'takwira' && role === 'organisateur' ){
+           this.connexionForm = false;
+
+         }
+  }*/
+  signIn(email, pwd, role){
+    if (email === 'takwira' && pwd === 'takwira' && role === 'organisateur' ){
       this.router.navigate(['/organisateur']);
-    }else if (login === 'takwira' && pwd === 'takwira' && role === 'entreneur' ){
+    }else if (email === 'takwira' && pwd === 'takwira' && role === 'entreneur' ){
       this.router.navigate(['/entreneur']);
-    }else if (login === 'takwira' && pwd === 'takwira' && role === 'responsableTicket' ){
+    }else if (email === 'takwira' && pwd === 'takwira' && role === 'responsableTicket' ){
       this.router.navigate(['/ticket']);
-    }else if (login === 'takwira' && pwd === 'takwira' && role === 'gestionneurBlog' ){
+    }else if (email === 'takwira' && pwd === 'takwira' && role === 'gestionneurBlog' ){
       this.router.navigate(['/blog']);
     }
-    /* this.serviceEntreprise.getEntreprise().subscribe((res) => {
-       this.liste = res;
-       if (this.liste.length !== 0){
-         this.entreprise = this.liste.find(x => x.username === login && x.password === pwd);
-         if ( this.entreprise != null && this.entreprise !== ''){
-         localStorage.setItem('idEntreprise', this.entreprise.id);
-         this.router.navigate(['/EspaceEmployeur']);
+     /*this.serviceUser.getAllUsers().subscribe((res) => {
+       this.listeUser = res;
+       if (this.listeUser.length !== 0){
+         this.user = this.listeUser.find(x => x.email === email && x.password === pwd && x.role === role);
+         if ( this.user != null && this.user !== ''){
+         localStorage.setItem('idUser', this.user.id);
+         this.router.navigate(['/admin']);
          }
          else {
-           this.errorMessage = true;
+           this.connexionForm = false;
          }
        }
        else {
-         this.errorMessage = true;
+         this.connexionForm = false;
        }
      });*/
   }
