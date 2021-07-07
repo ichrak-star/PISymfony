@@ -61,42 +61,42 @@ class User
      */
     private $adress;
 
-    /**
+ /*     *//**
      * @ORM\Column(type="string", length=255, nullable=true)
       * @Groups("user:read")
       * @Groups("user:write")
-     */
+     *//*
     private $post;
 
-    /**
+     *//**
      * @ORM\Column(type="string", length=255, nullable=true)
       * @Groups("user:read")
       * @Groups("user:write")
-     */
+     *//*
     private $tshirtNumber;
 
-    /**
+     *//**
      * @ORM\Column(type="string", length=255, nullable=true)
       * @Groups("user:read")
       * @Groups("user:write")
-     */
+     *//*
     private $size;
 
-    /**
+     *//**
      * @ORM\Column(type="string", length=255, nullable=true)
       * @Groups("user:read")
       * @Groups("user:write")
-     */
+     *//*
     private $weight;
 
-    /**
+     *//**
      * @ORM\Column(type="string", length=255, nullable=true)
       * @Groups("user:read")
       * @Groups("user:write")
-     */
+     *//*
     private $level;
 
-
+ */
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -172,7 +172,7 @@ class User
         return $this;
     }
 
-    public function getPost(): ?string
+   /*  public function getPost(): ?string
     {
         return $this->post;
     }
@@ -231,7 +231,7 @@ class User
 
         return $this;
     }
-
+ */
 
     public function getRole(): ?string
     {

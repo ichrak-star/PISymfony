@@ -19,9 +19,11 @@ export class AdminComponent implements OnInit {
     this.onreload();
   }
   delete(id){
-    this.userservice.deleteUser(id).subscribe(() => {
-      window.confirm('Voulez vous vraiment supprimé l"ulilisateur');
-    });
+    if (confirm('Voulez vous vraiment supprimé l"ulilisateur')){
+      this.userservice.deleteUser(id).subscribe(() => {
+        this.onreload();
+      });
+    }
   }
   onEdit(localUser: any){
     this.modifDiv = false;

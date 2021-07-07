@@ -1,5 +1,28 @@
 <app-header-admin></app-header-admin>
-<br><br><br><br><br>
+<br><br><br>
+<!--------------------------  Alert  ----------------------------->
+
+  <div [hidden]="success"  style="margin-left: 85%; margin-top: 40px; position: fixed;">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </symbol>
+    </svg>
+    <div  class="alert alert-success d-flex align-items-center"
+          role="alert" style="width: 230px; font-weight: bold; font-size: large; ">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>
+        Opération réusite
+      </div>
+    </div>
+  </div>
+
 <!--------------------------  Aside  ---------------------------->
 <aside>
   <div id="sidebar" class="nav-collapse " >
@@ -18,60 +41,68 @@
         </a>
       </li>
       <li>
-        <a  style="font-size: large" type="submit">
+        <a  (click)="afficherFormStade()" style="font-size: large" type="submit">
           <i  style="font-size: large" class="fa fa-plus-circle"></i>
           <span>Ajouter Stade </span>
+        </a>
+      </li>
+      <li>
+        <a  (click)="afficherFormArbitre()" style="font-size: large" type="submit">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter Arbitre </span>
+        </a>
+      <li>
+        <a  (click)="afficherFormEquipe()" style="font-size: large" type="submit">
+          <i  style="font-size: large" class="fa fa-plus-circle"></i>
+          <span>Ajouter équipe </span>
         </a>
       </li>
     </ul>
   </div>
 </aside>
-
-
 <div class="container" style="width: 1000px; margin-left: 25% ">
-  <!--------------------------  Ajout  ---------------------------->
+  <!--------------------------  MATCH  ---------------------------->
+  <hr>
+  <!---AjoutMatch--->
   <div class="card" [hidden]="afficherAjout">
     <div class="card-header">
       <h1>Ajouter match  </h1>
     </div>
     <div class="card-body">
       <form #f="ngForm">
-        <div class="form-group row">
-          <div class="col-lg-6">
-            <select  class="form-control" name="equipe1" ngModel formControlName>
-              <option hidden>Equipe 1</option>
-              <option >Barcelone</option>
-              <option >Real Madrid</option>
-              <option >Chelsea</option>
-              <option >Manchister United</option>
+        <div class="form-group row" >
+          <div class="col-lg-6" >
+            <select  class="form-control" name="equipe1"  ngModel>
+              <option > Equipe 1</option>
+              <option *ngFor="let team of listeTeam" >
+                {{ team.teamName }}
+              </option>
             </select >
           </div>
           <div class="col-lg-6">
-            <select class="form-control"  name="secteurEnt" ngModel formControlName >
-              <option hidden>Equipe 2</option>
-              <option >Barcelone</option>
-              <option >Real Madrid</option>
-              <option >Chelsea</option>
-              <option >Manchister United</option>
+            <select class="form-control"  name="equipe2" ngModel  >
+              <option > Equipe 2</option>
+              <option *ngFor="let team of listeTeam" >
+                {{ team.teamName }}
+              </option>
             </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <select  class="form-control" name="equipe1" ngModel formControlName>
-              <option hidden>Stade</option>
-              <option>Camp no</option>
-              <option>Bernabew</option>
-              <option>Sansiro</option>
-
+            <select  class="form-control" name="stade" ngModel >
+              <option > STADE </option>
+              <option *ngFor="let stade of listStade" >
+                {{ stade.staduimName }}
+              </option>
             </select >
           </div>
           <div class="col-lg-6">
-            <select class="form-control"  name="secteurEnt" ngModel formControlName >
-              <option hidden>Arbitre</option>
-              <option >Habib Jerbi</option>
-              <option >Chtiwi Azouz</option>
-              <option >Rochdi Bahri</option>
+            <select class="form-control"  name="arbitre" ngModel  >
+              <option > ARBITRES </option>
+              <option *ngFor="let arbitre of listArbitre" >
+                {{ arbitre.name }} {{ arbitre.lastName }}
+              </option>
 
             </select>
           </div>
@@ -94,7 +125,8 @@
       </form>
     </div>
   </div>
-  <!--------------------------  Table  ---------------------------->
+  <!---Modifier Match--->
+  <!---ListMatch--->
   <div [hidden]="afficherTable">
     <h1 style="font-weight: bold">Liste des matchs</h1>
     <table  class="table table-bordered" style="text-align: center">
@@ -114,40 +146,12 @@
       <tbody>
       <tr>
         <th scope="row">1</th>
-        <td>Barcelone</td>
-        <td>Real Madrid</td>
-        <td>Camp no</td>
-        <td>Habib Jerbi</td>
-        <td>30/06/2021</td>
-        <td>21:00</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Barcelone</td>
-        <td>Real Madrid</td>
-        <td>Camp no</td>
-        <td>Habib Jerbi</td>
-        <td>30/06/2021</td>
-        <td>21:00</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Barcelone</td>
-        <td>Real Madrid</td>
-        <td>Camp no</td>
-        <td>Habib Jerbi</td>
-        <td>30/06/2021</td>
-        <td>21:00</td>
+        <td>-------</td>
+        <td>-------</td>
+        <td>-------</td>
+        <td>-------</td>
+        <td>-------</td>
+        <td>-------</td>
         <td>
           <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
           <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
@@ -158,7 +162,84 @@
     </table>
   </div>
   <br><br>
+
+  <!--------------------------  STADE  ---------------------------->
   <hr>
+  <!---Ajout Stade--->
+  <div class="card" [hidden]="afficherAjoutStade">
+    <div class="card-header">
+      <h1>Ajouter Stade  </h1>
+    </div>
+    <div class="card-body">
+      <form #stade="ngForm">
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input  class="form-control" type="text" placeholder="Nom stade"  name="staduimName" ngModel >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+              </div>
+              <input  class="form-control" type="text" placeholder="Adresse"  name="location" ngModel>
+            </div>
+
+          </div>
+        </div>
+
+        <div [hidden]="validation">
+          <p style=" color: red;">Error : Please check your input form ... </p>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Ajouter" name="enregistrer" (click)="addStade(stade)"  class="btn btn-primary ">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerStade()">
+        </div>
+      </form>
+    </div>
+  </div>
+  <!---Modifier Stade -->
+  <div class="card" [hidden]="afficherModifStade">
+    <div class="card-header">
+      <h1>Ajouter Stade  </h1>
+    </div>
+    <div class="card-body">
+      <form #stade="ngForm">
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input  class="form-control" type="text" placeholder="Nom stade"  name="staduimName" [(ngModel)]="staduimModif.staduimName" >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+              </div>
+              <input  class="form-control" type="text" placeholder="Adresse"  name="location" [(ngModel)]="staduimModif.location">
+            </div>
+
+          </div>
+        </div>
+
+        <div [hidden]="validation">
+          <p style=" color: red;">Error : Please check your input form ... </p>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Modifier" name="enregistrer" (click)="editStade(staduimModif.id, staduimModif)"  class="btn btn-success ">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerStade()">
+        </div>
+      </form>
+    </div>
+  </div>
+  <!---ListStade -->
   <div >
     <h1 style="font-weight: bold">Liste des Stades</h1>
     <table  class="table table-bordered" style="text-align: center">
@@ -172,41 +253,211 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Camp no</td>
-        <td>Barcelone</td>
+      <tr *ngFor="let stade of listStade">
+        <th scope="row"> {{ stade.id }}</th>
+        <td>{{ stade.staduimName}}</td>
+        <td>{{  stade.location}}</td>
         <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          <button (click)="enEditStade(stade)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button (click)="supprimerStade(stade.id)"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
           </button>
         </td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Rades</td>
-        <td>Rades</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>El Manzeh</td>
-        <td>Ariana</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
+
       </tbody>
     </table>
   </div>
   <br><br>
+  <!-------------------------- ARBITRE  ---------------------------->
   <hr>
+  <!---Ajout Arbitre--->
+  <div class="card" [hidden]="afficherAjoutArbitre" >
+    <div class="card-header">
+      <h1>Ajouter Arbitre </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #arbitre="ngForm">
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nom Arbitre" name="name" ngModel>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Prenom"  name="lastName" ngModel>
+              </div>
+
+            </div>
+          </div>
+          <div [hidden]="erreurAjouterArbitre" >
+            <p style="color: red; font-weight: bold;">Please checkout the input form ....</p>
+          </div>
+          <div class="form-group">
+            <input (click)="addArbitre(arbitre)" type="submit" value="Ajouter" name="enregistrer"  class="btn btn-primary" >
+            <input (click)="anuulerAjoutArbitre()" type="submit" value="Annuler" name="enregistrer" class="btn btn-light" >
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!---Modifier Arbitre--->
+  <div class="card" [hidden]="afficherModifArbitre" >
+    <div class="card-header">
+      <h1>Modifier Arbitre </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #arbitre="ngForm">
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nom Arbitre" name="name"  [(ngModel)]="arbitreModif.name">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Prenom"  name="lastName" [(ngModel)]="arbitreModif.lastName">
+              </div>
+
+            </div>
+          </div>
+          <div [hidden]="erreurAjouterArbitre" >
+            <p style="color: red; font-weight: bold;">Please checkout the input form ....</p>
+          </div>
+          <div class="form-group">
+            <input (click)="editArbitre(arbitreModif.id, arbitreModif)" type="submit" value="Modifier" name="enregistrer"  class="btn btn-success" >
+            <input (click)="anuulerModifArbitre()" type="submit" value="Annuler" name="enregistrer" class="btn btn-light" >
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!---List Arbitre--->
+  <div >
+    <h1 style="font-weight: bold">Liste des arbitres</h1>
+    <table  class="table table-bordered" style="text-align: center">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom arbitre </th>
+        <th scope="col">Prenom </th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let arbitre of listArbitre" >
+        <th scope="row"> {{ arbitre.id }}</th>
+        <td>{{ arbitre.name }}</td>
+        <td>{{ arbitre.lastName }}</td>
+        <td>
+          <button (click)="enEditArbitre(arbitre)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button (click)="supprimerArbitre(arbitre.id)" > <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i> </button>
+        </td>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+
+  <!-------------------------- EQUIPE ---------------------------->
+  <hr>
+  <!---Ajout Equipe--->
+  <div class="card"  [hidden]="afficherAjoutEquipe" >
+    <div class="card-header">
+      <h1>Ajouter équipe </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #t="ngForm">
+
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nom team" name="teamName" ngModel>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nationalité"  name="nationality" ngModel>
+              </div>
+
+            </div>
+          </div>
+          <div [hidden]="validationAjoutTeam" >
+            <p style="color: red; font-weight: bold;">Please checkout the input form ....</p>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Ajouter" name="enregistrer"  class="btn btn-primary"(click)="ajouterEquipe(t)">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerTeam()">
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!---Modifier Equipe--->
+  <div class="card"  [hidden]="afficherModifEquipe" >
+    <div class="card-header">
+      <h1>Modifier équipe </h1>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <form #t="ngForm">
+
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nom team" name="teamName" [(ngModel)]="teamModif.teamName" l>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input  class="form-control" type="text" placeholder="Nationalité"  name="nationality" [(ngModel)]="teamModif.nationality">
+              </div>
+
+            </div>
+          </div>
+          <div [hidden]="validationAjoutTeam" >
+            <p style="color: red; font-weight: bold;">Please checkout the input form ....</p>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Modifier" name="enregistrer"  class="btn btn-success"(click)="editEquipe(teamModif.id, teamModif)">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerModifTeam()">
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!---List Equipe--->
   <div >
     <h1 style="font-weight: bold">Liste des équipes</h1>
     <table  class="table table-bordered" style="text-align: center">
@@ -220,36 +471,19 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Real Madrid</td>
-        <td>Madrid</td>
+      <tr *ngFor="let team of listeTeam">
+        <th scope="row"> {{ team.id }}</th>
+        <td>{{ team.teamName }}</td>
+        <td>{{ team.nationality }}</td>
         <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          <button (click)="enEditTeam(team)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button (click)="deleteOneTeam(team.id)"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
           </button>
         </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>EST</td>
-        <td>Tunis</td>
-        <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>CA</td>
-        <td>Tunis</td>
-        <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
       </tbody>
     </table>
   </div>
+  <br><br>
 
 </div>
 <br><br><br><br><br><br><br><br><br><br>

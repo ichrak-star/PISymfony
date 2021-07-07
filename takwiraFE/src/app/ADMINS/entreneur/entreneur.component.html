@@ -9,7 +9,7 @@
       Barcelone
       <br>
       <button style="margin-left: 25%"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-      <button (click)="deleteTeam()"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i></button>
+      <button > <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i></button>
     </div>
     <ul class="sidebar-menu" id="nav-accordion">
       <h2 style="color: black;   font-weight: bold;">ENTRENEUR</h2>
@@ -19,12 +19,6 @@
           <span style="font-size: large">Accueil</span>
 
         </a>
-      <li [hidden]="btnAjouterTeam">
-        <a  style="font-size: large" type="submit" (click)=" ajouterTeam()">
-          <i  style="font-size: large" class="fa fa-plus-circle"></i>
-          <span>Ajouter team </span>
-        </a>
-      </li>
       <li>
         <a  style="font-size: large" type="submit" (click)=" ajouterJoueur()">
           <i  style="font-size: large" class="fa fa-plus-circle"></i>
@@ -35,12 +29,52 @@
     </ul>
   </div>
 </aside>
-<!-------------------------- logo team -------------------------->
-
-
 
 <!--------------------------------------------------------------->
 <div class="container" style="width: 1500px; margin-left: 20% ">
+  <!-------------------------- Success ajout et modification ----------------->
+  <div [hidden]="success">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </symbol>
+    </svg>
+  <div  class="alert alert-success d-flex align-items-center"
+       role="alert" style="width: 600px; font-weight: bold; position: center; font-size: large; padding-left: 5%">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      Opération exécuté avec succès ...
+    </div>
+  </div>
+  </div>
+  <div [hidden]="deleteitem">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </symbol>
+    </svg>
+    <div  class="alert alert-danger d-flex align-items-center"
+          role="alert" style="width: 600px; font-weight: bold; position: center; font-size: large; padding-left: 5%">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        Supprission éffectué ...
+      </div>
+    </div>
+  </div>
+
+
   <!--------------------------  Ajout joueur ---------------------------->
   <div class="card"  [hidden]="afficher">
     <div class="card-header">
@@ -48,7 +82,7 @@
     </div>
     <div class="card-body">
       <div class="card-body">
-        <form #f="ngForm">
+        <form #j="ngForm">
           <div class="form-group row">
             <div class="col-lg-6">
               <div class="input-group form-group">
@@ -63,120 +97,56 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input  class="form-control" type="text" placeholder="LastName"  name="lastname" ngModel>
+                <input  class="form-control" type="text" placeholder="LastName"  name="lastName" ngModel>
               </div>
 
             </div>
           </div>
-          <div class="form-group row">
-            <div class="col-lg-6">
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                </div>
-                <input type="email" class="form-control" name="email" placeholder="Email"  ngModel>
-              </div>
-
+            <div class="form-group row">
+                  <div class="col-lg-3">
+                    <input  class="form-control" type="text" placeholder="Level" required name="level" ngModel>
+                  </div>
+                  <div class="col-lg-3">
+                    <input  class="form-control" type="text" placeholder="Weight" required name="weight" ngModel>
+                  </div>
+                  <div class="col-lg-3">
+                    <input  class="form-control" type="text" placeholder="size" required name="size" ngModel>
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control"  name="team" ngModel  >
+                      <option> EQUIPES</option>
+                      <option *ngFor="let team of listeTeam"  >
+                        {{ team.teamName }}
+                      </option>
+                    </select>
+                  </div>
             </div>
-            <div class="col-lg-6">
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input type="password"  class="form-control" placeholder="password" name="password" ngModel >
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-6">
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                </div>
-                <select  class="form-control" name="adress" ngModel >
-                  <option value="ariana" >Ariana</option>
-                  <option value="Béja">Béja</option>
-                  <option value="Ben Arous">Ben Arous</option>
-                  <option value="Bizerte">Bizerte</option>
-                  <option value="Gabes">Gabes</option>
-                  <option value="Gafsa">Gafsa</option>
-                  <option value="Jendouba">Jendouba</option>
-                  <option value="Kairouan">Kairouan</option>
-                  <option value="Kasserine">Kasserine</option>
-                  <option value="Kebili">Kebili</option>
-                  <option value="La Manouba">La Manouba</option>
-                  <option value="Le Kef">Le Kef</option>
-                  <option value="Mahdia">Mahdia</option>
-                  <option value="Médenine">Médenine</option>
-                  <option value="Monastir">Monastir</option>
-                  <option value="Nabeul">Nabeul</option>
-                  <option value="Sfax">Sfax</option>
-                  <option value="Sidi Bouzid">Sidi Bouzid</option>
-                  <option value="Siliana">Siliana</option>
-                  <option value="Sousse">Sousse</option>
-                  <option value="Tataouine">Tataouine</option>
-                  <option value="Tozeur">Tozeur</option>
-                  <option value="Tunis">Tunis</option>
-                  <option value="Zaghouan">Zaghouan</option>
-                </select >
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-tasks"></i></span>
-                </div>
-                <select  class="form-control" name="role" ngModel >
-                  <option  hidden>Role</option>
-                  <option value="organisateur" >Organisateur</option>
-                  <option value="entreneur">Entreneur</option>
-                  <option value="responsableTicker">Responsable ticket</option>
-                  <option value="gestionnaireBlog">Gestionneur blog</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-3">
-              <input  class="form-control" type="text" placeholder="Post" required name="post" ngModel>
-            </div>
-            <div class="col-lg-3">
-              <input  class="form-control" type="number" placeholder="T-shirt number" required name="tshirtNumber" ngModel>
-            </div>
-            <div class="col-lg-2">
-              <input  class="form-control" type="text" placeholder="Level" required name="Level" ngModel>
-            </div>
-            <div class="col-lg-2">
-              <input  class="form-control" type="text" placeholder="Weight" required name="Weight" ngModel>
-            </div>
-            <div class="col-lg-2">
-              <input  class="form-control" type="text" placeholder="size" required name="size" ngModel>
-            </div>
+          <div [hidden]="validationformAjoutJoueur">
+            <p style="font-weight: bold; color: red;">Invalid input form ....</p>
           </div>
           <div class="form-group">
-            <input type="submit" value="Enregistrer" name="enregistrer"  class="btn btn-primary"(click)="addOrganisater()">
-            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="addOrganisater()">
+            <input type="submit" value="Enregistrer" name="enregistrer"  class="btn btn-primary"(click)="addJoueur(j)">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerAjout()">
           </div>
         </form>
       </div>
     </div>
   </div>
-  <!-----------------------------Ajout team---------------------------------->
-  <div class="card"  [hidden]="afficherteam">
+  <!--------------------------  Modifier joueur ------------------------->
+  <div class="card" [hidden]="hideFormulaireModification" >
     <div class="card-header">
-      <h1>Ajouter team </h1>
+      <h1>Modifier joueur </h1>
     </div>
     <div class="card-body">
       <div class="card-body">
-        <form #f="ngForm">
-
+        <form #jm="ngForm">
           <div class="form-group row">
             <div class="col-lg-6">
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input  class="form-control" type="text" placeholder="Nom team" required name="teamName" ngModel>
+                <input  class="form-control" type="text" placeholder="Name"  name="name" [(ngModel)] ="joueurModif.name">
               </div>
             </div>
             <div class="col-lg-6">
@@ -184,21 +154,35 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input  class="form-control" type="text" placeholder="Nationalité" required name="nationality" ngModel>
+                <input  class="form-control" type="text" placeholder="LastName"  name="lastName" [(ngModel)] ="joueurModif.lastName">
               </div>
 
             </div>
           </div>
+          <div class="form-group row">
+            <div class="col-lg-4">
+              <input  class="form-control" type="text" placeholder="Level" required name="level" [(ngModel)] ="joueurModif.level">
+            </div>
+            <div class="col-lg-4">
+              <input  class="form-control" type="text" placeholder="Weight" required name="weight" [(ngModel)] ="joueurModif.weight">
+            </div>
+            <div class="col-lg-4">
+              <input  class="form-control" type="text" placeholder="size" required name="size" [(ngModel)] ="joueurModif.size">
+            </div>
+
+          </div>
           <div class="form-group">
-            <input type="submit" value="Enregistrer" name="enregistrer"  class="btn btn-primary"(click)="addteam()">
-            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerTeam()">
+            <input type="submit" value="Modifier" name="enregistrer"  class="btn btn-success"(click)="updateJoueur(joueurModif.id, joueurModif)">
+            <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerModification()">
           </div>
         </form>
       </div>
     </div>
     <br>
   </div>
+
   <!--------------------------  Table  ---------------------------->
+  <br><br>
   <div >
     <h1 style="font-weight: bold">Liste des joueurs</h1>
     <table class="table table-bordered table-hover" style="text-align: center">
@@ -206,8 +190,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Post </th>
-        <th scope="col">T-shirt number</th>
+        <th scope="col">LastName </th>
         <th scope="col">level</th>
         <th scope="col">weight</th>
         <th scope="col">Size</th>
@@ -216,117 +199,28 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Habib Jerbi</td>
-        <td>Gardien</td>
-        <td>1</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
+      <tr *ngFor="let joueur of listeJoueur">
+        <th scope="row">{{ joueur.id }}</th>
+        <td>{{ joueur.name }}</td>
+        <td>{{ joueur.lastName }}</td>
+        <td>{{ joueur.level }}</td>
+        <td>{{ joueur.weight }}</td>
+        <td>{{ joueur.size }}</td>
         <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
-          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
+          <button (click)="onEditJoueur(joueur)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button (click)="deleteJoueur(joueur.id)"> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
         </td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Chtiwi Azouz</td>
-        <td>Difenseur</td>
-        <td>5</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
-          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Rochdi Bahri</td>
-        <td>Attaque</td>
-        <td>10</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
-        <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style=" color: red">&nbsp; Delete</i></button>&nbsp;&nbsp;
-          <button> <i class="fas fa-plus-circle" style=" color: blue">&nbsp; Add to equipe</i></button>
-        </td>
-      </tr>
+
       </tbody>
     </table>
   </div>
-  <br><br><br>
 
-  <div >
-    <h1 style="font-weight: bold">Liste des joueurs sélectionnés</h1>
-    <table class="table table-bordered table-hover" style="text-align: center">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Post </th>
-        <th scope="col">T-shirt number</th>
-        <th scope="col">level</th>
-        <th scope="col">weight</th>
-        <th scope="col">Size</th>
-        <th scope="col">Action</th>
 
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Habib Jerbi</td>
-        <td>Gardien</td>
-        <td>1</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
-        <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Chtiwi Azouz</td>
-        <td>Difenseur</td>
-        <td>5</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
-        <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Rochdi Bahri</td>
-        <td>Attaque</td>
-        <td>10</td>
-        <td>Midium</td>
-        <td>100</td>
-        <td>170</td>
-        <td>
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <br><br><br>
+  <br><br><br><br><br><br>
 
 </div>
 
-<br><br><br>
 
 
 

@@ -6,9 +6,4 @@ export class User{
   password: string;
   adress: string;
   role: string;
-  post: string;
-  tshirtNumber: string;
-  size: number;
-  weight: number;
-  level: string;
 }
