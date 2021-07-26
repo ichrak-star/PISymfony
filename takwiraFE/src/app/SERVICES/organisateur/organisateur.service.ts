@@ -35,6 +35,9 @@ export class OrganisateurService {
     };
     return this.http.put(this.url + '/' + id, matche, options);
   }
+  getOneMatch(id){
+    return this.http.get(this.url + '/' + id );
+  }
   /* -------------------------------- Partie Stade ----------------------------- */
   addStade(stade: any){
     let options = {
@@ -53,6 +56,9 @@ export class OrganisateurService {
   }
   deleteStade(id){
     return this.http.delete(this.url2 + '/' + id );
+  }
+  getOneStade(id){
+    return this.http.get(this.url2 + '/' + id);
   }
   /* -------------------------------- Partie Arbitre ----------------------------- */
   addArbitre(arbitre: any){

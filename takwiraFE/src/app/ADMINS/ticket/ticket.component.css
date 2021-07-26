@@ -712,11 +712,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /* ------------------------------------------------------*/
 #sidebar{
-  background-color:  white;
+  background-color:  #eee;
   margin-left: 10px;
   width: 250px;
   height: 700px;
-  border-right: 2px solid #a4abbb ;
+  border-right: 2px solid #eee ;
 
 
 }

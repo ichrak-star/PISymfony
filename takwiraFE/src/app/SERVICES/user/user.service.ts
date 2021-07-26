@@ -18,6 +18,9 @@ export class UserService {
   getAllUsers(){
     return this.http.get(this.url);
   }
+  getOneUser(id){
+    return this.http.get(this.url + '/' + id);
+  }
   addUser(f){
     let options = {
       headers: this._getHeaders()

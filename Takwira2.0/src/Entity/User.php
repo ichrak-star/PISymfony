@@ -7,6 +7,8 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Serializer;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -16,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
   * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements \Serializable
 {
     /**
      * @ORM\Id
@@ -172,66 +174,6 @@ class User
         return $this;
     }
 
-   /*  public function getPost(): ?string
-    {
-        return $this->post;
-    }
-
-    public function setPost(?string $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
-    public function getTshirtNumber(): ?string
-    {
-        return $this->tshirtNumber;
-    }
-
-    public function setTshirtNumber(?string $tshirtNumber): self
-    {
-        $this->tshirtNumber = $tshirtNumber;
-
-        return $this;
-    }
-
-    public function getSize(): ?string
-    {
-        return $this->size;
-    }
-
-    public function setSize(?string $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    public function getWeight(): ?string
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?string $weight): self
-    {
-        $this->weight = $weight;
-
-        return $this;
-    }
-
-    public function getLevel(): ?string
-    {
-        return $this->level;
-    }
-
-    public function setLevel(?string $level): self
-    {
-        $this->level = $level;
-
-        return $this;
-    }
- */
 
     public function getRole(): ?string
     {
@@ -243,5 +185,31 @@ class User
         $this->role = $role;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return $this->serialize([
+            $this->id,
+            $this->name,
+            $this->lastname,
+            $this->password,
+            $this->email,
+            $this->adress,
+            $this->role
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->lastname,
+            $this->password,
+            $this->email,
+            $this->adress,
+            $this->role
+            )= $this->unserialize($serialized, ['allowed_classes' => false]);
     }
 }

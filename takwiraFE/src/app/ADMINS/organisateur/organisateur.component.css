@@ -53,7 +53,7 @@ a, a:hover, a:focus {
   display: block;
   cursor: pointer;
   border-top: 1px solid #F5F5F5;
-  padding: 5px 0px;
+  padding: 0px 0px;
   line-height: 28.75px;
   text-transform: uppercase;
   color:  #000612;
@@ -271,7 +271,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 ul.sidebar-menu {
-  margin-top: 75px;
+  margin-top: 15px;
 }
 
 #sidebar > ul > li > ul.sub {
@@ -710,12 +710,15 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 
 /* ------------------------------------------------------*/
+label{
+  font-weight: bold;
+}
 #sidebar{
-  background-color:  white;
+  background-color:  #eee;
   margin-left: 10px;
   width: 250px;
   height: 700px;
-  border-right: 2px solid #a4abbb ;
+  border-right: 2px solid #eee ;
 
 
 }

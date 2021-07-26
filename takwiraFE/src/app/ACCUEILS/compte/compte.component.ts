@@ -30,8 +30,8 @@ export class CompteComponent implements OnInit {
       this.serviceUser.addUser(this.user).subscribe(() => {
         alert('User added.....');
         this.validation = true;
+        this.router.navigate(['/loginEmployeur']);
       });
-      this.router.navigate(['/loginEmployeur']);
     }
   }
 

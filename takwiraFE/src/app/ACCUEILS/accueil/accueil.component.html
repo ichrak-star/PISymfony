@@ -1,7 +1,52 @@
-
 <app-header></app-header>
 <br><br><br><br><br><br>
+<!-------------------------------------------------------------------------->
+<div class="container" id="achatTicket" [hidden]="afficherAchatTicket" >
 
+  <div class="d-flex justify-content-center h-100">
+
+    <div  id="cardAchat">
+
+      <div class="card-header">
+        <button (click)="closeListeJoueur()" type="button" class="close"  style="padding-left: 90%; margin-top: 0 ">
+          <span aria-hidden="true" style="width: 100px; color: white">X</span>
+        </button>
+        <h4 style="color: white; text-align: center;" >Achat ticket</h4>
+      </div>
+      <div class="card-body">
+        <form #admin="ngForm">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control"  placeholder="Nom"   >
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text"  class="form-control" placeholder="Prenom" name="password" >
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+            </div>
+            <select  class="form-select" aria-label="Type ticket" name="typeTicket"  ngModel  >
+              <option value="pelouse">pelouse</option>
+              <option value="gradain">gradain</option>
+              <option value="virage">virage</option>
+              <option value="VIP">VIP</option>
+            </select>
+          </div>
+
+          <div class="form-group" >
+            <input (click)="confirmerAchat()" type="submit" value="Acheter" class="btn float-right login_btn">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <br>
 
@@ -9,157 +54,95 @@
 <div class="container">
   <div class="slider">
     <div class="slides">
-      <div class="slider-1"><img style="width: 100%" src="assets/images/slider1.jpg" alt=""></div>
-      <div class="slider-2"><img style="width: 100%" src="assets/images/slider.jpg" alt=""></div>
+      <div class="slider-1"><img style="width: 100%" src="assets/images/slider55.jpg" alt=""></div>
+      <div class="slider-2"><img style="width: 100%" src="assets/images/slider44.jpg" alt=""></div>
       <div class="slider-3"><img style="width: 100%" src="assets/images/slider3.jpg" alt=""></div>
-      <div class="slider-4"><img style="width: 100%" src="assets/images/slider2.jpg" alt=""></div>
+      <div class="slider-4"><img style="width: 100%" src="assets/images/slider22.jpg" alt=""></div>
     </div>
   </div>
 </div>
-
-<!------------------------------------------------->
 <br><br>
-<hr>
+<!------------------------------------------------->
+
+
 <!------------------- List match ---------------------->
 
-<div class="container" id="photos">
+  <h2 style="text-align: center">Liste des matchs disponible</h2>
+  <h4 style="text-align: center" >Nombre des matchs : &nbsp;&nbsp; {{ listMatch.length}}</h4>
+
+
+<div class="container" id="photos" *ngFor="let match of listMatch">
   <div class="hero-container">
     <div class="main-container">
       <div class="poster-container">
-        <a href="#"><img src="assets/images/RM2.png" class="poster" /></a>
+        <a href="#"><img src="assets/images/equipe3.jpg" class="poster" /></a>
       </div>
-      <div class="ticket-container">
+      <div class="ticket-container" >
         <div class="ticket__content">
-          <h4 class="ticket__movie-title">Real Madrid</h4>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Liste joueur</button>
+          <h4 class="ticket__movie-title">{{ match.equipe1 }}</h4>
+          <button (click)="open(content, match.equipe1)" type="button" class="btn btn-success" data-toggle="modal" data-bs-target="#liste">Liste joueur</button>
         </div>
       </div>
     </div>
     <div class="main-container">
       <div class="poster-container">
-        <a href="#"><img src="assets/images/barcelon1.jpg" class="poster" /></a>
+        <a href="#"><img src="assets/images/equipe3.jpg" class="poster" /></a>
       </div>
       <div class="ticket-container">
         <div class="ticket__content">
-          <h4 class="ticket__movie-title">Barcelone</h4>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Liste joueur</button>
+          <h4 class="ticket__movie-title">{{ match.equipe2 }}</h4>
+         <button (click)="open(content, match.equipe2)" type="button" class="btn btn-success" data-toggle="modal" data-bs-target="#liste">Liste joueur</button>
         </div>
       </div>
     </div>
     <div class="main-container">
       <div class="poster-container" style="height: 100px">
-        <p class="card-text" > <span style="font-weight: bold">Samedi  :</span> 26/06/2021</p>
-        <p class="card-text"> <span style="font-weight:  bold">Time    :</span> 21:00</p>
-        <p class="card-text"> <span style="font-weight:  bold">Arbitre :</span>Chtiwi AbdelAziz</p>
-        <p class="card-text"> <span style="font-weight:  bold">Stade :</span>Camp no</p>
-        <button class="ticket__buy-btn" style="color: cornflowerblue">Achat ticket</button>
+        <p class="card-text" > <span style="font-weight: bold">Date&nbsp;&nbsp;&nbsp;   :</span>&nbsp;&nbsp;&nbsp; {{ match.date }}</p>
+        <p class="card-text"> <span style="font-weight:  bold">Time  &nbsp;&nbsp;   :</span> &nbsp;&nbsp;&nbsp;{{ match.time }}</p>
+        <p class="card-text"> <span style="font-weight:  bold">Arbitre :</span>&nbsp;&nbsp;&nbsp;{{ match.arbitre }}</p>
+        <p class="card-text"> <span style="font-weight:  bold">Stade &nbsp;&nbsp;  :</span>&nbsp;&nbsp;&nbsp;{{ match.stade }} + {{ match.tickets }}</p>
+        <button (click)="acheterTicket()" class="ticket__buy-btn" style="color: cornflowerblue">Achat ticket</button>
       </div>
     </div>
   </div>
 </div>
-<hr>
+
 
 
 <!---------------------- List joueurs ------------------------->
-<br><br>
-<div class="container-fluid" id="joueurs-card" [hidden]="affiche">
-</div>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-header" >
-        <img style="width: 150px; margin-left: 40%" src="assets/images/barcelon1.jpg" class="poster" />
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="none" style=" margin-left: 37%; margin-top: 0">
-          <span aria-hidden="true" style="width: 50px">X</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="cards">
-          <div class="card">
-            <h2 class="card-title">Messi</h2>
-            <img src="assets/images/messi.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous,
-              fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus),
-              Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Piqué</h2>
-            <img src="assets/images/pikee.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Griezman</h2>
-            <img src="assets/images/Griezman.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Messi</h2>
-            <img src="assets/images/messi.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Piqué</h2>
-            <img src="assets/images/pikee.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Griezman</h2>
-            <img src="assets/images/Griezman.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Griezman</h2>
-            <img src="assets/images/Griezman.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Piqué</h2>
-            <img src="assets/images/pikee.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Messi</h2>
-            <img src="assets/images/messi.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Griezman</h2>
-            <img src="assets/images/Griezman.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Piqué</h2>
-            <img src="assets/images/pikee.jpg" alt="">
-            <p class="card-desc">Pinnipeds, commonly known as seals,[a] are a widely distributed and diverse clade of carnivorous, fin-footed, semiaquatic marine mammals. They comprise the extant families Odobenidae (whose only living member is the walrus), Otariidae (the eared seals: sea lions and fur seals), and Phocidae (the earless seals, or true seals).</p>
-          </div>
-
-        </div>
-
-        <div class="modal-footer">
-
-        </div>
-      </div>
-    </div>
+<ng-template #content let-modal  >
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title" style="margin-left: 47%">{{ equipes }}</h2>
+    <img style="width: 100px; " src="assets/images/barcelon1.jpg" class="poster" />
   </div>
-</div>
-<!---------------------- Video ------------------------->
-<hr>
-<div class="container">
-  <object width="750" height="500" data="https://www.youtube.com/embed/F9Bo89m2f6g" style="margin-left: 20%"></object>
-</div>
+  <div class="modal-body" >
+    <form>
+      <div class="modal-content" >
+        <div class="modal-body">
+          <div class="cards">
+            <div class="card" *ngFor="let joueur of listJoueur">
+              <h5 class="card-title">{{ joueur.name }}</h5>
+              <img src="assets/images/messi.jpg" alt="">
+              <p class="card-desc" style="width: 190px">
+                <b>Name :</b>{{ joueur.name }} <br>
+                <b>Lastname :</b>{{ joueur.lastName }}<br>
+                <b>Size :</b>{{ joueur.size }}cm<br>
+                <b>Level :</b>{{ joueur.level }}<br>
+                <b>Weight :</b>{{ joueur.weight }}kg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
 
-
-<!------------------------------------------------->
-
-
-
+<!----------------------------------------------------------------------------->
 
 
 <!-------------- Footer ------------------------->
 <br><br><br><br><br><br>
+<button  routerLink="/matche" class="nav-link" routerLinkActive="active" >Matche</button>
 <app-footer></app-footer>
 
 

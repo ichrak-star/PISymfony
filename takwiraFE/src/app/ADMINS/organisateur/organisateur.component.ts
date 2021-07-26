@@ -4,6 +4,10 @@ import {NgForm} from '@angular/forms';
 import {Staduim} from '../../ENTITIES/staduim';
 import {Arbitre} from '../../ENTITIES/arbitre';
 import {Team} from '../../ENTITIES/team';
+import {Router} from '@angular/router';
+import {Matche} from '../../ENTITIES/matche';
+import {Ticket} from '../../ENTITIES/ticket';
+import { UserService } from 'src/app/SERVICES/user/user.service';
 
 @Component({
   selector: 'app-organisateur',
@@ -12,6 +16,15 @@ import {Team} from '../../ENTITIES/team';
 })
 export class OrganisateurComponent implements OnInit {
   success = true;
+  suppression = true;
+  formEditUser = true;
+  erreurValidationModifUser = true;
+  listeUser;
+  oneUser;
+  searchedKeyword: any;
+  searchedKeyword1: any;
+  searchedKeyword2: any;
+  searchedKeyword3: any;
   afficherAjout = true;
   afficherAjoutStade = true;
   afficherModifStade = true;
@@ -20,33 +33,116 @@ export class OrganisateurComponent implements OnInit {
   afficherModifArbitre = true;
   afficherAjoutEquipe  = true;
   afficherModifEquipe  = true;
+  erreurMemeEquipe = true;
+  erreurAjouterMatch = true;
+  afficherModifMatch = true;
   afficherTable = false;
   validation = true;
-  validationAjoutTeam =true;
+  validationAjoutTeam = true;
+  listMatch;
   listeTeam;
   listStade;
   listArbitre;
+  idOrganisateur;
+  public matche: Matche = new Matche();
+  public matcheModif: Matche = new Matche();
   public arbitre: Arbitre = new Arbitre();
   public arbitreModif: Arbitre = new Arbitre();
   public staduim: Staduim = new Staduim();
   public staduimModif: Staduim = new Staduim();
   public team: Team = new Team();
   public teamModif: Team = new Team();
-  constructor(private serviceOrganisateur: OrganisateurService) { }
+  constructor(private serviceOrganisateur: OrganisateurService, private router: Router, private serviceUser: UserService) { }
 
   ngOnInit(): void {
-    this.getListTeam();
+    this.idOrganisateur = localStorage.getItem('organisateurKey');
+    console.log('---ID----' + this.idOrganisateur);
+    this.getOneOrganisateur();
+    this.getListMatch();
     this.getListeStade();
     this.getListeArbitre();
+    this.getListTeam();
   }
   /* ----------------------------------- Partie Match ----------------------------------- */
   ajouterMatch(){
-    this.afficherTable = true;
     this.afficherAjout = false;
+    this.erreurMemeEquipe = true;
+    this.erreurAjouterMatch = true;
   }
-  addOrganisater(){
-    this.afficherTable = false;
+  annulerAjoutMatch(){
     this.afficherAjout = true;
+  }
+  addMatch(matche: NgForm){
+    this.matche.equipe1 = matche.form.value['equipe1'];
+    this.matche.equipe2 = matche.form.value['equipe2'];
+    this.matche.stade = matche.form.value['stade'];
+    this.matche.arbitre = matche.form.value['arbitre'];
+    this.matche.date =  matche.form.value['date'];
+    this.matche.time = matche.form.value['time'];
+    this.matche.result = '';
+    if (this.matche.equipe1 === this.matche.equipe2){
+      this.erreurMemeEquipe = false;
+      this.erreurAjouterMatch = true;
+    }
+    else if (this.matche.equipe1 === '' || this.matche.equipe2 === '' || this.matche.stade === '' || this.matche.arbitre === ''
+             || this.matche.date === '' || this.matche.time === ''){
+      this.erreurAjouterMatch = false;
+      this.erreurMemeEquipe = true;
+    }
+    else {
+      this.serviceOrganisateur.addMatche(this.matche).subscribe(() => {
+          this.afficherAjout = true;
+          this.getListMatch();
+          this.success = false;
+          setTimeout(() => {
+            this.success = true;
+          }, 2000);
+        });
+    }
+  }
+  getListMatch(){
+    this.serviceOrganisateur.getAllMatche().subscribe((data) => {
+      this.listMatch = data ['hydra:member'] ;
+    });
+  }
+  supprimerMatch(id){
+    if (confirm(' supprission du stade id = ' + id)) {
+      this.serviceOrganisateur.deleteMatche(id).subscribe(() => {
+        this.getListMatch();
+        this.suppression = false;
+        setTimeout(() => {
+          this.suppression = true;
+        }, 2000);
+      });
+    }
+  }
+  enEditMatch(match){
+    this.afficherModifMatch = false;
+    this.matcheModif = match;
+    this.afficherAjout = true;
+  }
+  ModifierMatch(id, match){
+    if (this.matcheModif.equipe1 === this.matcheModif.equipe2){
+      this.erreurMemeEquipe = false;
+      this.erreurAjouterMatch = true;
+    } else if (this.matcheModif.equipe1 === '' || this.matcheModif.equipe2 === '' || this.matcheModif.stade === '' || this.matcheModif.arbitre === ''
+      || this.matcheModif.date === '' || this.matcheModif.time === ''){
+      this.erreurAjouterMatch = false;
+      this.erreurMemeEquipe = true;
+    }
+    else {
+      this.serviceOrganisateur.updateMatche(id, match).subscribe(() => {
+        this.getListMatch();
+        this.afficherModifMatch = true;
+        this.success = false;
+        setTimeout(() => {
+          this.success = true;
+        }, 2000);
+      });
+    }
+  }
+  annulerMOdifMatch(){
+    this.afficherModifMatch = true;
   }
   /* ----------------------------------- Partie team ----------------------------------- */
   afficherFormEquipe(){
@@ -94,9 +190,13 @@ export class OrganisateurComponent implements OnInit {
     this.afficherModifEquipe = true;
   }
   deleteOneTeam(id){
-    if (confirm('Voulez vous vraiment supprimé l"équipe ?')){
+    if (confirm('Voulez vous vraiment supprimé l"équipe ?')) {
       this.serviceOrganisateur.deleteTeam(id).subscribe(() => {
         this.getListTeam();
+        this.suppression = false;
+        setTimeout(() => {
+          this.suppression = true;
+        }, 2000);
       });
     }
   }
@@ -138,6 +238,10 @@ export class OrganisateurComponent implements OnInit {
     if (confirm(' supprission du stade!!!!')) {
       this.serviceOrganisateur.deleteStade(id).subscribe(() => {
         this.getListeStade();
+        this.suppression = false;
+        setTimeout(() => {
+          this.suppression = true;
+        }, 2000);
       });
     }
   }
@@ -181,6 +285,10 @@ export class OrganisateurComponent implements OnInit {
     if (confirm(' Voulez vous vraiment supprimer l"arbitre ?')) {
       this.serviceOrganisateur.deleteArbitre(id).subscribe(() => {
         this.getListeArbitre();
+        this.suppression = false;
+        setTimeout(() => {
+          this.suppression = true;
+        }, 2000);
       });
     }
   }
@@ -201,4 +309,44 @@ export class OrganisateurComponent implements OnInit {
   anuulerModifArbitre(){
     this.afficherModifArbitre = true;
   }
+
+  /* ----------------------------------- Connexion ------------------------------------------ */
+  logoutOrganisateur(){
+    localStorage.removeItem('organisateurKey');
+    this.router.navigate(['']);
+  }
+  getOneOrganisateur(){
+    this.idOrganisateur = localStorage.getItem('organisateurKey');
+    this.serviceUser.getAllUsers().subscribe((res) => {
+      this.listeUser = res ['hydra:member'];
+      this.oneUser = this.listeUser.find(x => x.id == this.idOrganisateur);
+      if (this.oneUser == undefined){
+        alert('user not found');
+      }
+    });
+    console.log('---USER----' , this.listeUser);
+    console.log('---ID2----' + this.idOrganisateur);
+    console.log('---USER2----' + this.oneUser);
+  }
+  onEditUser(){
+    this.formEditUser = false;
+  }
+  annulerEdit(){
+    this.formEditUser = true;
+  }
+  editUser(id, userModif){
+    if (userModif.name === '' || userModif.lastname === '' || userModif.password === '' || userModif.email === '' || userModif.adress === '' ){
+      this.erreurValidationModifUser = false;
+    }else {
+      this.serviceUser.updateUser(id, userModif).subscribe(() => {
+        this.erreurValidationModifUser = true;
+        this.success = false;
+        setTimeout(() => {
+          this.success = true;
+        }, 2500);
+      });
+      this.formEditUser = true;
+    }
+  }
+
 }

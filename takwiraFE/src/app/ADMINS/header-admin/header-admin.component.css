@@ -402,7 +402,6 @@ ul.sidebar-menu li a.active i {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1002;
 }
 
 .black-bg {
@@ -421,6 +420,7 @@ ul.sidebar-menu li a.active i {
 }
 
 a.logo {
+  margin-left: 0;
   font-size: 24px;
   color: #f2f2f2;
   float: left;
@@ -557,9 +557,10 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
   border: 1px solid #eeeeee;
   border-radius: 4px;
   -webkit-border-radius: 4px;
-  padding: 6px;
+  padding: 100px;
   background: none;
   margin-right: 0;
+  z-index: 10;
 }
 .top-nav ul.top-menu > li {
   margin-left: 10px;
