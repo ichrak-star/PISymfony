@@ -1,0 +1,423 @@
+/***********************************/
+
+#blocOffre{
+  padding-left: 10%;
+}
+
+article.job-card {
+  height: 100px;
+  display: grid;
+  grid-template-columns: 80px auto 100px;
+  grid-template-rows: 35px 10px 35px;
+  width: 80%;
+  position: relative;
+  border: 1px solid #e3e3e3 ;
+
+  font-family: 'Helvetica';
+
+}
+
+article.job-card:hover,
+article.job-card:focus {
+  background-color: rgba(0,166,200,.03);
+  border-color: lightgrey;
+}
+
+.company-logo-img {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #fff;
+  border: none;
+  height: 80px;
+  width: 100px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 45px;
+}
+
+.company-logo-img img {
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.job-title {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 45px;
+  align-self: start;
+  font-weight: 700;
+  margin-top: 5px;
+  padding: 0 24px;
+}
+.job-title:hover {
+  color: #252B60;
+  cursor: pointer;
+}
+
+.company-name {
+  grid-area: 2 / 2 / 3 / 3;
+  font-size: 14px;
+  color: #777;
+  padding: 5px 24px;
+}
+.company-lieu {
+  grid-area: 2 / 2 / 3 / 3;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 0px;
+  padding: 35px 25px;
+}
+
+
+
+
+
+button {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 6px 12px;
+  z-index: 2;
+}
+.apply {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: lightgrey;
+  color: black;
+}
+.apply:hover {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: black;
+  color: lightgrey;
+}
+h3{
+  font-size: 25px;
+}
+h3:hover{
+  color: #00a6b2;
+}
+.save {
+  grid-area: 3 / 3 / 4 / 4;
+  background-color: #fff;
+  border: 1px solid #a4a5a8;
+  color: #777;
+}
+
+a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+
+
+
+
+.mobile-wrapper .company-logo-img {
+  grid-area: 1 / 1 / 3 / 2;
+  height: 60px;
+  width: 60px;
+}
+
+
+
+
+
+
+.mobile-wrapper .btn-container {
+  grid-area: 4 / 1 / 5 / 3;
+  display: flex;
+}
+
+.mobile-wrapper .btn-container button {
+  height: 38px;
+  flex: 1;
+  width: 0;
+}
+
+.mobile-wrapper .btn-container .apply {
+  margin-right: 10px;
+}
+/**********************************************/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
+#photos {
+  background: white;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  height: 250px;
+}
+
+.hero-container {
+  margin: auto;
+  display: flex;
+}
+
+.main-container {
+  width: 270px;
+  height: 200px;
+  position: relative;
+  margin: 0 20px;
+}
+
+.poster-container {
+  width: 230px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 20px;
+
+}
+
+.poster {
+  width: 100%;
+  box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+
+.ticket-container {
+  background: #fff;
+  width: 270px;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+  opacity: 0.6;
+}
+
+.main-container:hover .ticket-container {
+  opacity: 1;
+  animation: bounceIn 0.6s linear;
+}
+
+@keyframes bounceIn {
+ /* 0%,
+  20%,
+  40%,*/
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+ /* 0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }*/
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.01, 1.01, 1.01);
+    transform: scale3d(1.01, 1.01, 1.01);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+   /* -webkit-transform: scaleX(1);
+    transform: scaleX(1);*/
+  }
+}
+
+/* @keyframes bounce {
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+} */
+
+.ticket__content {
+  width: 70%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.ticket__movie-title {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.ticket__movie-slogan {
+  color: #999;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+
+
+.ticket__old-price {
+  color: #999;
+  text-decoration: line-through;
+  margin-bottom: 10px;
+}
+
+.ticket__buy-btn {
+  margin-bottom: 0;
+  cursor: pointer;
+  width: 100%;
+  background: #2f2f2f;
+  color: white;
+  padding: 15px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/**********************************************/
+
+#joueurs-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #34495e;
+
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  margin: 40px;
+  position: relative;
+  max-width:100px;
+  max-height: 100px;
+  box-shadow: 0 40px 60px -6px black;
+}
+
+.card-title {
+  display: block;
+  text-align: center;
+  color: #fff;
+  background-color: #6184a8;
+  padding: 2%;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.card img {
+  width: 100%;
+  height: 98%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+}
+
+.card-desc {
+  display: block;
+  font-size: 1.2rem;
+  position: absolute;
+  height: 0;
+  top: 0;
+  opacity: 0;
+  padding: 18px 8%;
+  background-color: white;
+  overflow-y: scroll;
+  transition: 0.4s ease;
+}
+
+.card:hover .card-desc {
+  opacity: 1;
+  height: 160%;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: #fff;
+  margin: 40px 0 20px 0;
+  text-align: center;
+}
+
+/**********************************************************/
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+
+
+#cardAchat{
+  height: 320px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  opacity: 1;
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+
+
+
+.card-header h1{
+  color: white;
+}
+
+
+
+.input-group-prepend span{
+  width: 50px;
+  background-color: #04862B;
+  color: white;
+  border:0 !important;
+}
+
+input:focus{
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+
+}
+
+
+.login_btn{
+  color: white;
+  background-color: #04862B;
+  width: 100px;
+}
+
+.login_btn:hover{
+  color:  #04862B;
+  background-color: white;
+}
+#achatTicket{
+  width: 300px;
+  margin-left: 80%;
+  margin-top: 60px;
+  position: fixed;
+}
+
+
+/********************************/

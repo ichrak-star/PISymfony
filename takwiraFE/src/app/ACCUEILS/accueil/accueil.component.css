@@ -1,8 +1,8 @@
 .slider{
-  width:80%;
-  height:500px;
+  width:60%;
+  height:300px;
   overflow:hidden;
-  margin-left: 10%;
+  margin-left: 20%;
 }
 .slides{
   width:400%;
@@ -315,7 +315,7 @@ a {
 .ticket-container {
   background: #fff;
   width: 270px;
-  height: 180px;
+  height: 190px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -323,7 +323,7 @@ a {
   position: absolute;
   top: 20px;
   box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
-  opacity: 0;
+  opacity: 0.6;
 }
 
 .main-container:hover .ticket-container {
@@ -332,16 +332,16 @@ a {
 }
 
 @keyframes bounceIn {
-  0%,
+ /* 0%,
   20%,
-  40%,
+  40%,*/
   60%,
   80%,
   to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  0% {
+ /* 0% {
     opacity: 0;
     -webkit-transform: scale3d(0.3, 0.3, 0.3);
     transform: scale3d(0.3, 0.3, 0.3);
@@ -353,20 +353,21 @@ a {
   40% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9);
     transform: scale3d(0.9, 0.9, 0.9);
-  }
+  }*/
   60% {
     opacity: 1;
     -webkit-transform: scale3d(1.01, 1.01, 1.01);
     transform: scale3d(1.01, 1.01, 1.01);
   }
   80% {
+    opacity: 1;
     -webkit-transform: scale3d(0.97, 0.97, 0.97);
     transform: scale3d(0.97, 0.97, 0.97);
   }
   to {
     opacity: 1;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
+   /* -webkit-transform: scaleX(1);
+    transform: scaleX(1);*/
   }
 }
 
@@ -430,6 +431,7 @@ a {
   align-items: center;
   flex-direction: column;
   background-color: #34495e;
+
 }
 
 .cards {
@@ -491,3 +493,63 @@ h1 {
 }
 
 /**********************************************************/
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+
+
+#cardAchat{
+  height: 320px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  opacity: 1;
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+
+
+
+.card-header h1{
+  color: white;
+}
+
+
+
+.input-group-prepend span{
+  width: 50px;
+  background-color: #04862B;
+  color: white;
+  border:0 !important;
+}
+
+input:focus{
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+
+}
+
+
+.login_btn{
+  color: white;
+  background-color: #04862B;
+  width: 100px;
+}
+
+.login_btn:hover{
+  color:  #04862B;
+  background-color: white;
+}
+#achatTicket{
+  width: 300px;
+  margin-left: 80%;
+  margin-top: 60px;
+  position: fixed;
+}
+
+
+/********************************/
+

@@ -2,7 +2,7 @@
 <br><br><br>
 <!--------------------------  Alert  ----------------------------->
 
-  <div [hidden]="success"  style="margin-left: 85%; margin-top: 40px; position: fixed;">
+  <div [hidden]="success"  style="margin-left: 15%; margin-top: 40px; position: fixed;">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -22,12 +22,133 @@
       </div>
     </div>
   </div>
+  <div [hidden]="suppression"  style="margin-left: 15%; margin-top: 40px; position: fixed;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+  <div  class="alert alert-danger d-flex align-items-center"
+        role="alert" style="width: 230px; font-weight: bold; font-size: large; ">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      Supprission
+    </div>
+  </div>
+</div>
 
+<!--------------------------  Profil  ---------------------------->
+<div style="position: fixed; width: 300px; height: 800px; margin-top: 15px; margin-left: 83%; background-color: #fff;  border-left: 4px solid #eee ;">
+  <a  href="#"  style="color: black; margin-left: 25%; ">
+    <i style="font-size: large" class="fas fa-user">&nbsp;&nbsp; {{ oneUser.name }} {{ oneUser.lastname }}</i>
+  </a>
+  <hr>
+  <button (click)="onEditUser()"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit Profil</i></button>
+
+
+    <div [hidden]="formEditUser" >
+        <div class="card-body">
+          <form #f="ngForm">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input  class="form-control" type="text" placeholder="Name"  name="name" [(ngModel)]=" oneUser.name" >
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input  class="form-control" type="text" placeholder="LastName"  name="lastname" [(ngModel)]=" oneUser.lastname">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="email" class="form-control" name="email" placeholder="Email"  [(ngModel)]=" oneUser.email">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password"  class="form-control" placeholder="password" name="password" [(ngModel)]=" oneUser.password" >
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <select  class="form-control" name="adress" [(ngModel)]=" oneUser.adress" >
+                    <option value="ariana" >Ariana</option>
+                    <option value="Béja">Béja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Gabes">Gabes</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Kebili">Kebili</option>
+                    <option value="La Manouba">La Manouba</option>
+                    <option value="Le Kef">Le Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Médenine">Médenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                  </select >
+                </div>
+              </div>
+            </div>
+            <div [hidden]="erreurValidationModifUser" >
+              <p style=" color: red;">Error : Please check your input... </p>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Modifier" name="enregistrer"  class="btn btn-success" (click)=" editUser(oneUser.id, oneUser)">
+              <input type="submit" value="Annuler" name="enregistrer"  class="btn btn-light" (click)="annulerEdit()">
+            </div>
+          </form>
+        </div>
+  </div>
+  <br>
+
+  <button (click)="logoutOrganisateur()" > <i class="fas fa-sign-out-alt" style=" color: green">&nbsp; Logout</i></button>
+</div>
 <!--------------------------  Aside  ---------------------------->
 <aside>
   <div id="sidebar" class="nav-collapse " >
     <ul class="sidebar-menu" id="nav-accordion">
-      <h2 style="color: black;   font-weight: bold;">ORGANISATEUR</h2>
+
       <li class="mt">
         <a class="active" href="#" >
           <i style="font-size: large" class="fa fa-home" aria-hidden="true"></i>
@@ -62,6 +183,7 @@
 </aside>
 <div class="container" style="width: 1000px; margin-left: 25% ">
   <!--------------------------  MATCH  ---------------------------->
+
   <hr>
   <!---AjoutMatch--->
   <div class="card" [hidden]="afficherAjout">
@@ -69,20 +191,20 @@
       <h1>Ajouter match  </h1>
     </div>
     <div class="card-body">
-      <form #f="ngForm">
+      <form #matche="ngForm">
         <div class="form-group row" >
           <div class="col-lg-6" >
-            <select  class="form-control" name="equipe1"  ngModel>
-              <option > Equipe 1</option>
-              <option *ngFor="let team of listeTeam" >
+            <label  >Equipe 1 :</label>
+            <select  class="form-select" name="equipe1"  ngModel>
+              <option *ngFor="let team of listeTeam" value="{{team.teamName }}" >
                 {{ team.teamName }}
               </option>
             </select >
           </div>
           <div class="col-lg-6">
-            <select class="form-control"  name="equipe2" ngModel  >
-              <option > Equipe 2</option>
-              <option *ngFor="let team of listeTeam" >
+            <label  >Equipe 2 :</label>
+            <select class="form-select"  name="equipe2" ngModel  >
+              <option *ngFor="let team of listeTeam" value="{{team.teamName }}">
                 {{ team.teamName }}
               </option>
             </select>
@@ -90,17 +212,17 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <select  class="form-control" name="stade" ngModel >
-              <option > STADE </option>
-              <option *ngFor="let stade of listStade" >
+            <label  >Stade :</label>
+            <select  class="form-select" name="stade" ngModel >
+              <option *ngFor="let stade of listStade" value="{{ stade.staduimName }}" >
                 {{ stade.staduimName }}
               </option>
             </select >
           </div>
           <div class="col-lg-6">
-            <select class="form-control"  name="arbitre" ngModel  >
-              <option > ARBITRES </option>
-              <option *ngFor="let arbitre of listArbitre" >
+            <label  >Arbitre :</label>
+            <select class="form-select"  name="arbitre" ngModel  >
+              <option *ngFor="let arbitre of listArbitre" value="{{ arbitre.lastName }} {{ arbitre.name}}" >
                 {{ arbitre.name }} {{ arbitre.lastName }}
               </option>
 
@@ -110,25 +232,110 @@
         <div class="form-group row">
           <div class="col-lg-6">
             <label  >Date de match :</label>
-            <input class="form-control" type="date" name="dateCreat" ngModel required>
+            <input class="form-control" type="date" name="date" ngModel>
           </div>
           <div class="col-lg-6">
             <label  >Time de match :</label>
-            <input class="form-control" type="time" name="dateCreat" ngModel required>
+            <input class="form-control" type="time" name="time" ngModel >
           </div>
+        </div>
+        <div [hidden]="erreurMemeEquipe">
+          <p style=" font-weight: bold; color: red;">Erreur: mème équipe sélectionnée ... </p>
+        </div>
+        <div [hidden]="erreurAjouterMatch">
+          <p style=" font-weight: bold; color: red;">Erreur: vous avez oublié un champs ... </p>
         </div>
         <br>
         <div class="form-group">
-          <input type="submit" value="Ajouter" name="enregistrer" class="btn btn-primary" (click)="addOrganisater()">&nbsp;
-          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="addOrganisater()">
+          <input type="submit" value="Ajouter" name="enregistrer" class="btn btn-primary" (click)="addMatch(matche)">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerAjoutMatch()">
         </div>
       </form>
     </div>
   </div>
   <!---Modifier Match--->
+  <div class="card" [hidden]="afficherModifMatch">
+    <div class="card-header">
+      <h1>Modifier match  </h1>
+    </div>
+    <div class="card-body">
+      <form #matche="ngForm">
+        <div class="form-group row" >
+          <div class="col-lg-6" >
+            <select  class="form-control" name="equipe1"  [(ngModel)]="matcheModif.equipe1">
+              <option > Equipe 1</option>
+              <option *ngFor="let team of listeTeam" value="{{team.teamName }}" >
+                {{ team.teamName }}
+              </option>
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control"  name="equipe2" [(ngModel)]="matcheModif.equipe2"  >
+              <option > Equipe 2</option>
+              <option *ngFor="let team of listeTeam" value="{{team.teamName }}">
+                {{ team.teamName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label  >Stade :</label>
+            <select  class="form-control" name="stade" [(ngModel)]="matcheModif.stade" >
+              <option > stade</option>
+              <option *ngFor="let stade of listStade" value="{{ stade.staduimName }}" >
+                {{ stade.staduimName }}
+              </option>
+            </select >
+          </div>
+          <div class="col-lg-6">
+            <label  >Arbitre :</label>
+            <select class="form-control"  name="arbitre" [(ngModel)]="matcheModif.arbitre"  >
+              <option *ngFor="let arbitre of listArbitre" value="{{ arbitre.lastName }} {{ arbitre.name}}" >
+                {{ arbitre.name }} {{ arbitre.lastName }}
+              </option>
+
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-4">
+            <label  >Date de match :</label>
+            <input class="form-control" type="date" name="date" [(ngModel)]="matcheModif.date">
+          </div>
+          <div class="col-lg-4">
+            <label  >Time de match :</label>
+            <input class="form-control" type="time" name="time" [(ngModel)]="matcheModif.time" >
+          </div>
+          <div class="col-lg-4">
+            <label  >Résultat :</label>
+            <input class="form-control" type="text"  name="result" [(ngModel)]="matcheModif.result" >
+          </div>
+        </div>
+        <div [hidden]="erreurMemeEquipe">
+          <p style=" font-weight: bold; color: red;">Erreur: mème équipe sélectionnée ... </p>
+        </div>
+        <div [hidden]="erreurAjouterMatch">
+          <p style=" font-weight: bold; color: red;">Erreur: vous avez oublié un champs ... </p>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" value="Modifier" name="enregistrer" class="btn btn-success" (click)="ModifierMatch(matcheModif.id, matcheModif)">&nbsp;
+          <input type="submit" value="Annuler" name="enregistrer" class="btn btn-light" (click)="annulerMOdifMatch()">
+        </div>
+      </form>
+    </div>
+  </div>
   <!---ListMatch--->
-  <div [hidden]="afficherTable">
-    <h1 style="font-weight: bold">Liste des matchs</h1>
+  <div>
+    <div class="row">
+      <div class="col-lg-10">
+        <h1 style="font-weight: bold">Liste des matchs</h1>
+      </div>
+      <div class="col-lg-2">
+        <input  class="form-control mb-2 mr-sm-2" placeholder="Search "[(ngModel)]="searchedKeyword">
+      </div>
+    </div>
     <table  class="table table-bordered" style="text-align: center">
       <thead>
       <tr>
@@ -144,17 +351,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>-------</td>
-        <td>-------</td>
-        <td>-------</td>
-        <td>-------</td>
-        <td>-------</td>
-        <td>-------</td>
+      <tr *ngFor="let match of listMatch | filter: searchedKeyword;">
+        <th scope="row">{{ match.id }}</th>
+        <td>{{ match.equipe1 }}</td>
+        <td>{{ match.equipe2}}</td>
+        <td>{{ match.stade}}</td>
+        <td>{{ match.arbitre}}</td>
+        <td>{{ match.date }}</td>
+        <td>{{ match.time }}</td>
         <td>
-          <button> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
-          <button> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
+          <button (click)="enEditMatch(match)"> <i class="fas fa-edit" style=" color: green">&nbsp; Edit</i></button>&nbsp;&nbsp;
+          <button (click)="supprimerMatch(match.id)"> <i class="far fa-trash-alt" style="  color: red">&nbsp; Delete</i>
           </button>
         </td>
       </tr>
@@ -241,7 +448,14 @@
   </div>
   <!---ListStade -->
   <div >
-    <h1 style="font-weight: bold">Liste des Stades</h1>
+    <div class="row">
+      <div class="col-lg-10">
+        <h1 style="font-weight: bold">Liste des Stades</h1>
+      </div>
+      <div class="col-lg-2">
+        <input  class="form-control mb-2 mr-sm-2" placeholder="Search "[(ngModel)]="searchedKeyword1">
+      </div>
+    </div>
     <table  class="table table-bordered" style="text-align: center">
       <thead>
       <tr>
@@ -253,7 +467,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let stade of listStade">
+      <tr *ngFor="let stade of listStade  | filter: searchedKeyword1;">
         <th scope="row"> {{ stade.id }}</th>
         <td>{{ stade.staduimName}}</td>
         <td>{{  stade.location}}</td>
@@ -350,7 +564,14 @@
   </div>
   <!---List Arbitre--->
   <div >
-    <h1 style="font-weight: bold">Liste des arbitres</h1>
+    <div class="row">
+      <div class="col-lg-10">
+        <h1 style="font-weight: bold">Liste des arbitres</h1>
+      </div>
+      <div class="col-lg-2">
+        <input  class="form-control mb-2 mr-sm-2" placeholder="Search "[(ngModel)]="searchedKeyword2">
+      </div>
+    </div>
     <table  class="table table-bordered" style="text-align: center">
       <thead>
       <tr>
@@ -362,7 +583,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let arbitre of listArbitre" >
+      <tr *ngFor="let arbitre of listArbitre  | filter: searchedKeyword2;" >
         <th scope="row"> {{ arbitre.id }}</th>
         <td>{{ arbitre.name }}</td>
         <td>{{ arbitre.lastName }}</td>
@@ -459,7 +680,14 @@
   </div>
   <!---List Equipe--->
   <div >
-    <h1 style="font-weight: bold">Liste des équipes</h1>
+    <div class="row">
+      <div class="col-lg-10">
+        <h1 style="font-weight: bold">Liste des équipes</h1>
+      </div>
+      <div class="col-lg-2">
+        <input  class="form-control mb-2 mr-sm-2" placeholder="Search "[(ngModel)]="searchedKeyword3">
+      </div>
+    </div>
     <table  class="table table-bordered" style="text-align: center">
       <thead>
       <tr>
@@ -471,7 +699,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let team of listeTeam">
+      <tr *ngFor="let team of listeTeam | filter: searchedKeyword3;">
         <th scope="row"> {{ team.id }}</th>
         <td>{{ team.teamName }}</td>
         <td>{{ team.nationality }}</td>

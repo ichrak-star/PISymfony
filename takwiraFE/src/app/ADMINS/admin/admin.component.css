@@ -711,11 +711,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /* ------------------------------------------------------*/
 #sidebar{
-  background-color:  white;
+  background-color:  #eee;
   margin-left: 10px;
   width: 250px;
   height: 700px;
-  border-right: 2px solid #a4abbb ;
+  border-right: 2px solid #eee ;
 
 
 }
@@ -727,16 +727,18 @@ h2{
 
 
 /***********************************/
-.card{
-  height: 350px;
-  width: 1500px;
-}
-.card{
 
-  padding: 20px;
-  box-shadow:
+.card{
+   height: 400px;
+   width: 800px;
+   padding: 20px;
+   box-shadow:
     inset 0 -3em 3em rgba(0,0,0,0.1),
     0 0  0 2px rgb(255,255,255),
     0.3em 0.3em 1em rgba(0,0,0,0.3);
+  position: fixed;
+  z-index: 10;
 
 }
+
+

@@ -4,6 +4,8 @@ import {UserService} from '../../SERVICES/user/user.service';
 import {EntreneurService} from '../../SERVICES/entreneur/entreneur.service';
 import {JoueurService} from '../../SERVICES/joueur/joueur.service';
 import {Joueur} from '../../ENTITIES/joueur';
+import {Router} from '@angular/router';
+import {Team} from '../../ENTITIES/team';
 
 @Component({
   selector: 'app-entreneur',
@@ -12,22 +14,29 @@ import {Joueur} from '../../ENTITIES/joueur';
 })
 export class EntreneurComponent implements OnInit {
   success = true;
-  deleteitem = true;
+  suppression = true;
+  formEditUser = true;
+  erreurValidationModifUser = true;
   btnAjouterTeam = false;
   logo = true;
   afficher = true;
   listeJoueur;
+  idEntreneur;
   listeTeam;
+  listeUser;
+  oneUser;
   hideFormulaireModification = true;
   validationformAjoutJoueur = true;
   constructor(private serviceUser: UserService, private serviceEntreneur: EntreneurService,
-              private servicejoueur: JoueurService) { }
+              private servicejoueur: JoueurService, private router: Router) { }
   public joueur: Joueur = new Joueur();
   public joueurModif: Joueur = new Joueur();
+  public teamAjout: Team = new Team();
 
   ngOnInit(): void {
     this.getAllTeam();
     this.getAlljoueur();
+    this.getOneOrganisateur();
   }
   /* ----------------------------- Partie Joueur ---------------------------------- */
   getAlljoueur(){
@@ -37,7 +46,7 @@ export class EntreneurComponent implements OnInit {
     });
   }
   ajouterJoueur(){
-    if (this.listeJoueur.length < 10){
+    if (this.listeJoueur.length < 11){
       this.afficher = false;
       this.validationformAjoutJoueur = true;
     }else {
@@ -51,8 +60,9 @@ export class EntreneurComponent implements OnInit {
     this.joueur.weight = j.form.value['weight'];
     this.joueur.statut = true;
     this.joueur.level = j.form.value['level'];
-    this.joueur.team = j.form.value['team'];
-    console.log('id team : ' + this.joueur.team);
+    this.teamAjout.id = j.form.value['team'];
+    this.joueur.team = this.teamAjout ;
+    console.log('Notre team : ' + this.joueur.team);
     if ((this.joueur.name === '') || (this.joueur.lastName  === '') || (this.joueur.size === '') || (this.joueur.weight === '') ||
         (this.joueur.level === '') ){
       this.validationformAjoutJoueur = false;
@@ -72,9 +82,9 @@ export class EntreneurComponent implements OnInit {
     if (confirm(' supprission du joueur !!!!')){
       this.servicejoueur.deleteJoueur(id).subscribe(() => {
         this.getAlljoueur();
-        this.deleteitem = false;
+        this.suppression = false;
         setTimeout(() => {
-          this.deleteitem = true;
+          this.suppression = true;
         }, 2000);
       });
     }
@@ -106,6 +116,40 @@ export class EntreneurComponent implements OnInit {
   annulerAjout(){
     this.afficher = true;
   }
-
+  /* ----------------------------- Connexion ---------------------------------- */
+  logoutEntreneur(){
+    localStorage.removeItem('entreneurKey');
+    this.router.navigate(['']);
+  }
+  getOneOrganisateur(){
+    this.idEntreneur = localStorage.getItem('entreneurKey');
+    this.serviceUser.getAllUsers().subscribe((res) => {
+      this.listeUser = res ['hydra:member'];
+      this.oneUser = this.listeUser.find(x => x.id == 2);
+      if (this.oneUser == undefined){
+        alert('user not found');
+      }
+    });
+  }
+  onEditUser(){
+    this.formEditUser = false;
+  }
+  annulerEdit(){
+    this.formEditUser = true;
+  }
+  editUser(id, userModif){
+    if (userModif.name === '' || userModif.lastname === '' || userModif.password === '' || userModif.email === '' || userModif.adress === '' ){
+      this.erreurValidationModifUser = false;
+    }else {
+      this.serviceUser.updateUser(id, userModif).subscribe(() => {
+        this.erreurValidationModifUser = true;
+        this.success = false;
+        setTimeout(() => {
+          this.success = true;
+        }, 2500);
+      });
+      this.formEditUser = true;
+    }
+  }
 
 }

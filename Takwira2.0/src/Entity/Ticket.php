@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"matche:read"}},
+ *     denormalizationContext={"groups"={"matche:write"}}
+  * )
  * @ORM\Entity(repositoryClass=TicketRepository::class)
  */
 class Ticket
@@ -16,23 +20,31 @@ class Ticket
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("matche:read")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $sell;
-
-    /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("matche:read")
+     * @Groups("matche:write")
      */
     private $number;
 
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Matche::class)
+     * @Groups("matche:read")
+     * @Groups("matche:write")
      */
-    private $type;
+    private $matche;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("matche:read")
+     * @Groups("matche:write")
+     */
+    private $typeTicket;
 
 
 
@@ -41,17 +53,6 @@ class Ticket
         return $this->id;
     }
 
-    public function getSell(): ?bool
-    {
-        return $this->sell;
-    }
-
-    public function setSell(bool $sell): self
-    {
-        $this->sell = $sell;
-
-        return $this;
-    }
 
     public function getNumber(): ?string
     {
@@ -65,16 +66,29 @@ class Ticket
         return $this;
     }
 
-    public function getType(): ?string
+    public function getMatche(): ?Matche
     {
-        return $this->type;
+        return $this->matche;
     }
 
-    public function setType(string $type): self
+    public function setMatche(?Matche $matche): self
     {
-        $this->type = $type;
+        $this->matche = $matche;
 
         return $this;
     }
+    public function getTypeTicket(): ?string
+    {
+        return $this->typeTicket;
+    }
+
+    public function setTypeTicket(string $typeTicket): self
+    {
+        $this->typeTicket = $typeTicket;
+
+        return $this;
+    }
+
+
 
 }

@@ -24,4 +24,17 @@ export class TicketService {
     };
     return this.http.post(this.url , data, options );
   }
+  updateTicket(id, data){
+    let options = {
+      headers: this._getHeaders()
+    };
+    return this.http.put(this.url + '/' + id, data, options);
+  }
+  getOneMatch(id){
+    return this.http.get(this.url + '/' + id );
+  }
+  deleteTicket(id){
+    return this.http.delete(this.url + '/' + id);
+  }
+
 }

@@ -18,6 +18,11 @@ import {FormControlName, FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HeaderAdminComponent } from './ADMINS/header-admin/header-admin.component';
+import { LoginComponent } from './SECURITY/login/login.component';
+import { BlogsComponent } from './ACCUEILS/blogs/blogs.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatcheComponent } from './ACCUEILS/matche/matche.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,9 @@ import { HeaderAdminComponent } from './ADMINS/header-admin/header-admin.compone
     TicketComponent,
     BlogComponent,
     HeaderAdminComponent,
+    LoginComponent,
+    BlogsComponent,
+    MatcheComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,8 @@ import { HeaderAdminComponent } from './ADMINS/header-admin/header-admin.compone
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    NgbModule
   ],
   exports: [
     BrowserModule,

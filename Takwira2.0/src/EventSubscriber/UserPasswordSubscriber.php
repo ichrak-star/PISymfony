@@ -11,10 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserPasswordSubscriber implements EventSubscriberInterface {
 
-    /**
-     * @var UserPasswordEncoderInterface
-     */
-    private $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
     {
@@ -24,18 +21,19 @@ class UserPasswordSubscriber implements EventSubscriberInterface {
     public static function getSubscribedEvents()
     {
         return [
-           ' Kernel.view' => ['setPassword', EventPriorities::PRE_WRITE],
+            KernelEvents::VIEW => ['setPassword', EventPriorities::PRE_WRITE],
         ];
     }
 
-    public function setPassword(GetResponseForControllerResultEvent $event)
+    public function setPassword(ViewEvent $event): void
     {
-        $user = $event->getControllerResult();
+       /*$user = $event->getControllerResult();
 
-        if ($user instanceof User && $user->getPassword()) {
+        if ($user instanceof User ) {
             $password = $this->passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-        }
+        }*/
+
     }
 
 }
